@@ -1,0 +1,63 @@
+/* 
+    Created on : 11/08/2016, 12:34:26 AM
+    Author     : Noah_Nathan
+*/
+
+.btn {
+    width: 5cm;
+    padding: 2px;
+    /*font-size: 12pt;*/
+    /*border-radius: 6pt;*/
+    margin: auto;
+}
+.tb1 {
+    padding: 10px;
+}
+.tr1 { 
+}
+.td1 {
+    padding: 5px;
+}
+/*----------------Headers------------------*/
+.tbl_header {
+    font-size: 14pt;
+    font-weight: bold;
+    text-align: center;
+}
+/*---------------Messages------------------*/
+.reg_msg {
+    color: green;
+    text-align: center;
+}
+.login_msg {
+    color: green;
+    font-size: 14pt;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.login_fail_msg {
+    color: green;
+    margin-left: 10px;
+}
+/*----------------Indents------------------*/
+.indent_01{
+    margin-left: 10px;
+}
+/*-----------------Temp--------------------*/
+.div_user {
+}
+.tbl_user {
+    margin: auto;
+    border-style: solid;
+}
+.th_user {
+    border-style: solid; 
+    border-width: .5px;
+    font-weight: bold;
+}
+.td_user {
+    border-style: solid; 
+    border-width: .5px;
+    padding: 5px;
+}
+/*-----------------------------------------*/

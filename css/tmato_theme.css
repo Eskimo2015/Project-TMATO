@@ -1,0 +1,122 @@
+/*
+ CSS for banner formatting
+ */
+.divAlignLeft {
+    margin-left: -10px;
+}
+
+.nonScroll {
+	display: block;
+    position: fixed;
+    top: 0;
+    left: 0;	 
+    z-index: 1; 
+    width: 100%; 
+    height: 230px;
+    background: url("../resources/images/maze_white.gif");
+}
+
+.banner td{
+    width: 25%;
+    height: 30px;
+    border: 1px solid #D4000C;
+    border-collapse: collapse;
+	background-color: #F3F3F3;
+}
+
+.banner a
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+	padding: 0px;
+}
+
+.banner a:hover
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+	padding: 0px;
+	background-color: #D3D3D3;
+}
+
+/*sets the appropriate size for the logo*/
+.logo {
+    max-width: 300px; 
+    max-height: 160px;
+}
+
+
+/*Special page formatting*/
+.spacerSmall {
+    height: 16px;
+}
+
+.spacerMedium{
+	height: 32px;
+}
+
+.spacerLarge{
+	height: 288px;
+}
+
+.pageBreak {
+    background-color: #D4000C;
+    height: 10px;
+    width: 82%;
+    margin-left: -10px;
+}
+
+.headingBreak {
+    background-color: #D4000C;
+    height: 10px;
+    width: 30%;
+    margin-left: -30px;
+}
+
+.setBodyMargin {
+	width: 80%;
+	margin-left: 20px;
+}
+
+.hideElement{
+	visibility: hidden;
+}
+
+.cleanLink  {
+	text-decoration: none;
+}
+
+.cleanLink:hover {
+	text-decoration: underline;
+	color: green;
+}
+
+
+/*General page formatting*/
+p {
+	width: 80%;
+	margin-left: 20px;
+}
+
+h1 {
+	margin-left: 20px;
+}
+
+body {
+	background-color: #F3F3F3;
+}
+
+table {
+	border-spacing: 0;
+    table-layout: fixed;
+}
