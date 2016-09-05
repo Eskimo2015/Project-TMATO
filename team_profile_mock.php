@@ -11,11 +11,7 @@
     <body>
     <p>This page uses frames. The current browser you are using does not support frames.</p>
     <?php
-<<<<<<< HEAD
-		$_REQUEST
-=======
 
->>>>>>> origin/Noah_Dev
 	?>
     </body>
     </noframes>
