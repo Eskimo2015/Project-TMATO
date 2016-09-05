@@ -84,22 +84,22 @@ session_start();
                                 <tr>
                                     <td class='th_user'>First Name</td><td class='td_user'>$output[1]</td>
                                 </tr>
-                                          <tr>
+                                <tr>
                                     <td class='th_user'>Last Name</td><td class='td_user'>$output[2]</td>
-                                          </tr>
-                                          <tr>
+                                </tr>
+                                <tr>
                                     <td class='th_user'>DOB</td><td class='td_user'>$output[3]</td>
-                                          </tr>
-                                          <tr>
+                                </tr>
+                                <tr>
                                     <td class='th_user'>Email</td><td class='td_user'>$output[4]</td>
-                                          </tr>
-                                          <tr>
+                                </tr>
+                                <tr>
                                     <td class='th_user'>Username</td><td class='td_user'>$output[5]</td>
-                                          </tr>
-                                          <tr>
+                                </tr>
+                                <tr>
                                     <td class='th_user'>Password</td><td class='td_user'>$output[6]</td>
-                                          </tr>
-                                          <tr>
+                                </tr>
+                                <tr>
                                     <td class='th_user'>A/C Created</td><td class='td_user'>$output[7]</td>
                                 </tr>
                             ";
