@@ -24,11 +24,19 @@ session_start();
                 <table class="table_header">
                     <tr>
                         <td><a href = "homepage.php"><img src="resources\images\tmato.png" class="logo"></a></td>
+                        <td>
+                        <?php
+							if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+								if (!empty($_GET['login_msg'])) {
+	                                $message = $_GET['login_msg'];
+	                                echo "<p class='welcome_msg'>$message</p>";
+	                            }
+                            }
+                            ?> 
+                        </td>
                     </tr>
                     <tr>
                         <td><div class="spacerSmall"></div></td>
-                            <?php
-                            ?> 
                     </tr>
                     <tr>
                     	<td>
@@ -52,8 +60,6 @@ session_start();
                                 echo "<p align='center'>You are currently logged in as " . $_SESSION['user'] . " !</p>"
                                 ;
                             } else {
-                                $_SESSION['loggedin'] = false;
-                            }
                             if (!empty($_GET['login_msg'])) {
                                 $message = $_GET['login_msg'];
                                 echo "<p class='login_fail_msg'>$message</p>";
@@ -61,6 +67,7 @@ session_start();
                             if (!empty($_GET['logout_msg'])) {
                                 $message = $_GET['logout_msg'];
                                 echo "<p class='confirm_msg'>$message</p>";
+                            }
                             }
                             ?>
                         </td>
@@ -91,7 +98,6 @@ session_start();
                 </table>	
             </div>
         </div>
-
         <!--ContentBody-->
         <div class="spacerLarge"></div>
         <div class="pageBreak"></div>
@@ -99,7 +105,6 @@ session_start();
             About
         </h1>
         <div class="headingBreak"></div>
-
         <p>
             Lorem ipsum dolor sit amet, cum ei quas dicit definitionem, agam inani facilisi no eam, nihil dicunt fuisset est in. Mel solet expetenda et, nonumes maluisset reformidans ut duo. Te amet error graecis sea, semper tacimates in ius. His semper facilisis evertitur no, vis fuisset assueverit efficiantur cu.
             Pri legendos adolescens dissentiet ex. Ne eos veniam feugiat deterruisset, eam in fierent evertitur. No est blandit iudicabit, ne vis solet delenit. Eam cu molestiae quaerendum, postea qualisque posidonium duo ei. Ut vel quodsi docendi corrumpit, percipit salutandi ad cum, causae voluptaria eam eu. Te cum facilisi partiendo consetetur.
