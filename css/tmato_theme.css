@@ -72,15 +72,16 @@
 .pageBreak {
     background-color: #D4000C;
     height: 10px;
-    width: 82%;
-    margin-left: -10px;
+    width: 80%;
+    /*margin-left: 0px;*/
 }
 
 .headingBreak {
     background-color: #D4000C;
     height: 10px;
     width: 30%;
-    margin-left: -30px;
+   /* margin-left: -30px;*/
+   margin-top: -20px;
 }
 
 .setBodyMargin {
@@ -116,7 +117,12 @@ body {
 	background-color: #F3F3F3;
 }
 
-table {
+.table_header {
 	border-spacing: 0;
     table-layout: fixed;
+    width: 80%;
+    /*border-style: solid;*/
+}
+.table_nav {
+	width: 80%;	
 }

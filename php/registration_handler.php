@@ -11,19 +11,21 @@ $dob = $_POST['dob'];
 $email = $_POST['email'];
 $uname = $_POST['username'];
 $pword = $_POST['password'];
+$pw_hash = "hash_temp";
 
 //Step 2:  connect to MySQL and select database in one statement
-$connection = mysqli_connect("localhost:3306", "root", "", "tmato");
+$connection = mysqli_connect("localhost:3306", "root", "", "tmato_db");
 
 //Step 3:  Run query - check DB for existing account
-$result = mysqli_query ($connection , "SELECT u_name FROM user WHERE 
-        u_name LIKE '{$uname}';");
+$result = mysqli_query ($connection , "SELECT User_UserName FROM user WHERE 
+        User_UserName LIKE '{$uname}';");
         
 if (mysqli_fetch_row($result)) {    //Step 4a:  If username already exists then abort registration and print message
     header("Location: ../registration.php?reg_msg=Your chosen USERNAME is already in use!"
         . "  Please enter another USERNAME to create a new account...");
 } else { //Step 4b:  Run query - insert form data into user table and print confirmation message
-    mysqli_query($connection, "INSERT INTO user values(NULL,'{$fname}','{$lname}','{$dob}','{$email}','{$uname}','{$pword}',CURTIME())");
+    mysqli_query($connection, "INSERT INTO user values(NULL,'{$fname}','{$lname}','{$dob}','{$email}',
+    	'{$uname}','{$pword}','',CURDATE(),NULL,'0','0')");
     header("Location: ../registration.php?reg_msg=Your account has been created successfully!");
 }
 

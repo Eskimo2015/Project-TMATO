@@ -52,7 +52,7 @@
             <div class="headingBreak"></div>
         </h1>
         <div class="setBodyMargin">
-            <form method="POST" action="php/register_user.php">
+            <form method="POST" action="php/registration_handler.php">
                 <table class="tb1">
                     <tr><td class="td1">First Name:</td><td></td><td><input type="text" name="firstname"></td></tr>
                     <tr><td class="td1">Last Name:</td><td></td><td><input type="text" name="lastname"></td></tr>
@@ -61,7 +61,7 @@
                     <tr><td class="td1" colspan="3"></td></tr>
                     <tr><td class="td1" colspan="3"></td></tr>
                     <tr><td class="td1">Username:</td><td></td><td><input type="text" name="username"></td></tr>
-                    <tr><td class="td1">Password:</td><td></td><td><input type="text" name="password"></td></tr>
+                    <tr><td class="td1">Password:</td><td></td><td><input type="password" name="password"></td></tr>
                     <tr><td class="td1" colspan="3"></td></tr>
                     <tr><td class="td1" colspan="3"></td></tr>
                     <tr class="tr1" style="text-align:center"><td class="td1" colspan="3"><input class="btn" type="submit" name="submit" value="Register"></td></tr>
@@ -94,7 +94,7 @@
                         <th class="th_user">A/C Created</th> 
                     </tr>
                     <?php
-                    $connection = mysqli_connect("localhost:3306", "root", "", "tmato");
+                    $connection = mysqli_connect("localhost:3306", "root", "", "tmato_db");
                     $result = mysqli_query($connection, "SELECT * FROM user;");
 
                     while ($output = mysqli_fetch_row($result)) {
@@ -107,7 +107,7 @@
                                     <td class='td_user'>$output[4]</td>
                                     <td class='td_user'>$output[5]</td>
                                     <td class='td_user'>$output[6]</td>
-                                    <td class='td_user'>$output[7]</td>
+                                    <td class='td_user'>$output[8]</td>
                                 </tr>
                             ";
                     }
