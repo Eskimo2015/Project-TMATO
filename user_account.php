@@ -16,54 +16,100 @@ session_start();
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
     </head>
     <body>
-        <table  width = 100%>
-            <tr>
-                <td><a href = "homepage.php"><img src="resources/images/tmato.png" width="150" height="80"></a></td>
-                <!--<td class="homeLogin">Login area</td>-->
-                <td></td>
-                <td></td>
-                <td class="login_msg">
-                    <?php
-                    if (!empty($_GET['login_msg'])) {
-                        $message = $_GET['login_msg'];
-                        echo "<p>$message</p>";
-                    }
-                    ?>
-                </td>
-                <td></td>
-                <td>
-                    <?php
-                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-                        echo "You are currently logged in as " . $_SESSION['user'] . " !"
-                        . "<td><a href='php/logout_user.php' class='cleanLink'>logout</a></td>";
-                    } else {
-                        $_SESSION['loggedin'] = false;
-                    }
-                    ?>    
-                </td>
-                <td></td>
-            </tr>
-        </table>
+        <!--Banner-->
+        <div class="nonScroll">
+            <form method="post" action="php/login_handler.php">
+                <table class="table_header">
+                    <tr>
+                        <td><a href = "homepage.php"><img src="resources\images\tmato.png" class="logo"></a></td>
+                        <td>
+                        <?php
+							if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+								if (!empty($_GET['login_msg'])) {
+	                                $message = $_GET['login_msg'];
+	                                echo "<p class='welcome_msg'>$message</p>";
+	                            }
+                            }
+                            ?> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><div class="spacerSmall"></div></td>
+                    </tr>
+                    <tr>
+                    	<td>
+                        <?php
+                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                        	$_SESSION['loggedin'] = true;
+                        } else {
+                        	echo "
+	                            <label class='indent_01'>UserName:  </label>
+	                            <input class='indent_01' type='text' name='username'>
+	                            <label class='indent_01'>Password:  </label>
+	                            <input class='indent_01' type='password' name='password'>
+	                            <input class='indent_01' type='submit' value='Login'>
+                        	";
+                        }
+                        ?>  
+                     	</td>
+                        <td>
+                            <?php
+							if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                                echo "<p align='center'>You are currently logged in as " . $_SESSION['user'] . " !</p>"
+                                ;
+                            } else {
+                            if (!empty($_GET['login_msg'])) {
+                                $message = $_GET['login_msg'];
+                                echo "<p class='login_fail_msg'>$message</p>";
+                            }
+                            if (!empty($_GET['logout_msg'])) {
+                                $message = $_GET['logout_msg'];
+                                echo "<p class='confirm_msg'>$message</p>";
+                            }
+                            }
+                            ?>
+                        </td>
+                        <td align="right">
+                        <p align="right">
+                        <?php
+                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                        	echo "<a href='php/logout_handler.php' class='cleanLink'>logout</a>";
+                        } else {
+                            echo "<a href='registration.php' class='cleanLink'>Register</a>";
+                        }
+                        ?> 
+                        </p>
+                     	</td> 
+                    </tr>
+                </table>
+            </form>
+            <div class="pageBreak"></div>
+            <div>
+                <table class="table_nav">
+                    <tr class="banner">
+                        <td><a href ="user_account.php">User</a></td>
+                        <td><a href ="team.php">Team</a></td>
+                        <td><a href ="tournament.php">Tournament</a></td>
+                        <td><a href ="organisation.php">Organisation</a></td>
+                        <!---<td class="hideElement"></td>-->
+                    </tr>
+                </table>	
+            </div>
+        </div>
+        <!--ContentBody-->
+        <div class="spacerLarge"></div>
         <div class="pageBreak"></div>
-        <table  width = 100%>
-            <tr class="banner">
-                <td><a href ="user_account.php" class="cleanLink">User</a></td>
-                <td><a href ="team.php" class="cleanLink">Team</a></td>
-                <td><a href ="tournament.php" class="cleanLink">Tournament</a></td>
-                <td><a href ="organisation.php" class="cleanLink">Organisation</td>
-                <td></td>
-            </tr>
-        </table> 
         <h1>
             <?php
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                 echo $_SESSION['user'];
             } else {
                 $_SESSION['loggedin'] = false;
-                echo "UserName";
+                echo "User Name";
             }
             ?>  
         </h1>
+        <div class="headingBreak"></div>
         <div>
             <br><br>
             <div class="div_user">

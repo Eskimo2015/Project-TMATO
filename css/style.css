@@ -29,11 +29,12 @@
     color: green;
     text-align: center;
 }
-.login_msg {
+.welcome_msg {
     color: green;
-    font-size: 14pt;
+    font-size: 20pt;
     font-weight: bold;
-    margin-left: 10px;
+    text-align: center;
+    margin: 10px;
 }
 .login_fail_msg {
     color: green;
