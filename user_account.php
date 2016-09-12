@@ -73,8 +73,8 @@ session_start();
                     </tr>
                     <?php
                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-                        $connection = mysqli_connect("localhost:3306", "root", "", "tmato");
-                        $result = mysqli_query($connection, "SELECT * FROM user where u_name LIKE '{$_SESSION["user"]}';");
+                        $connection = mysqli_connect("localhost:3306", "root", "", "tmato_db");
+                        $result = mysqli_query($connection, "SELECT * FROM user where User_UserName LIKE '{$_SESSION["user"]}';");
 
                         while ($output = mysqli_fetch_row($result)) {
                             echo"
