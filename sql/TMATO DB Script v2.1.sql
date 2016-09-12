@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2016 at 08:08 AM
+-- Generation Time: Sep 12, 2016 at 11:57 AM
 -- Server version: 5.7.11
 -- PHP Version: 5.6.19
 
@@ -177,7 +177,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`User_ID`, `User_FirstName`, `User_LastName`, `User_DOB`, `User_EmailAdress`, `User_UserName`, `User_Password`, `User_PwordHash`, `User_Created`, `User_Bio`, `User_DisplayName`, `User_DisplayAge`) VALUES
 (1, 'Roger', 'Ramjet', '2001-03-17', 'roger.ramjet@jet.com', 'Rod12', 'Rod12', '', '2016-09-01', NULL, 0, 0),
 (2, 'Fred', 'Flintstone', '1947-08-31', 'fred.flintstone@bedrock.com', 'Prehistoric', 'Prehistoric', '', '2016-09-10', NULL, 0, 0),
-(3, 'Kyle', 'Reese', '2022-06-23', 'machines_rule@future.sky.net', 'WillNotStop', 'UntillYouAreDead!', '', '2016-09-12', NULL, 0, 0);
+(3, 'Kyle', 'Reese', '2022-06-23', 'machines_rule@future.sky.net', 'WillNotStop', 'UntillYouAreDead!', '', '2016-09-12', NULL, 0, 0),
+(4, 'Maxwell', 'Smart', '1944-04-25', 'maxwell.smart@getsmart.web', 'Secret', 'Message', '', '2016-09-12', '', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -298,7 +299,7 @@ ALTER TABLE `tournament`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
