@@ -1,8 +1,11 @@
 /*
  CSS for banner formatting
  */
-.divAlignLeft {
-    margin-left: -10px;
+ /*	Aligns borders/lines/content - hard to the left, eliminating gap. 
+ 	Currently commented out!
+ */
+.contentContainer {
+    /*margin-left: -10px;*/
 }
 
 .nonScroll {

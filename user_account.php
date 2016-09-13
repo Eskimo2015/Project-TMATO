@@ -10,7 +10,15 @@ session_start();
 ?>
 <html>
     <head>
-        <title>My Account</title>
+    	<title>
+        <?php
+			if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+				echo 'My Account';
+			} else {
+				echo 'User Account';
+			}
+		?>
+		</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/tmato_theme.css">
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
@@ -97,6 +105,7 @@ session_start();
             </div>
         </div>
         <!--ContentBody-->
+        <div class="contentContainer">
         <div class="spacerLarge"></div>
         <div class="pageBreak"></div>
         <h1>
@@ -120,7 +129,7 @@ session_start();
                     <?php
                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                         $connection = mysqli_connect("localhost:3306", "root", "", "tmato_db");
-                        $result = mysqli_query($connection, "SELECT * FROM user where User_UserName LIKE '{$_SESSION["user"]}';");
+                        $result = mysqli_query($connection, "SELECT * FROM user where User_UName LIKE '{$_SESSION["user"]}';");
 
                         while ($output = mysqli_fetch_row($result)) {
                             echo"
@@ -156,6 +165,7 @@ session_start();
                     ?>
                 </table>
             </div>
+        </div>
         </div>
     </body>
 </html>

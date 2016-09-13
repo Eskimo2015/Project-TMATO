@@ -11,6 +11,7 @@ session_start();
         <meta name="description" content="Team manager and tournament organiser">
         <meta name="keywords" content="Tournament,Organiser,Tmato,Manager">
         <meta name="author" content="Dion Rabone">
+        <meta name="co-author" content="Noah Nathan">
         <!--Acknowledgements-->
         <!--Graphical consultant: Giscarde Rousseau-->
         <link rel="Background image provided by:" href="http://subtlepatterns.com/page/2/?s=light">
@@ -99,6 +100,7 @@ session_start();
             </div>
         </div>
         <!--ContentBody-->
+        <div class="contentContainer">
         <div class="spacerLarge"></div>
         <div class="pageBreak"></div>
         <h1>
@@ -142,5 +144,6 @@ session_start();
             Mei quas laoreet an, in probo iudico ubique eum. Ad nisl regione molestie est, noster copiosae temporibus ex vel. Ea recteque maluisset cotidieque usu, iusto adolescens id mei. Ei mei tota reprimique.
             Sed dicit deserunt corrumpit et, sit eu saperet similique pertinacia. Te qui molestie constituam, consul laoreet iracundia ius cu, dicant causae interesset te mea. Sea dolores vituperatoribus ea. Ea brute voluptua pri.
         </p>
+        </div>
     </body>
 </html>

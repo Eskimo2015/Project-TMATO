@@ -17,8 +17,8 @@ $pw_hash = "hash_temp";
 $connection = mysqli_connect("localhost:3306", "root", "", "tmato_db");
 
 //Step 3:  Run query - check DB for existing account
-$result = mysqli_query ($connection , "SELECT User_UserName FROM user WHERE 
-        User_UserName LIKE '{$uname}';");
+$result = mysqli_query ($connection , "SELECT User_UName FROM user WHERE 
+        User_UName LIKE '{$uname}';");
         
 if (mysqli_fetch_row($result)) {    //Step 4a:  If username already exists then abort registration and print message
     header("Location: ../registration.php?reg_msg=Your chosen USERNAME is already in use!"

@@ -4,6 +4,7 @@ session_start();
 ?>
 <html>
     <head>
+        <title>Organisation</title>
         <link rel="stylesheet" type="text/css" href="css/tmato_theme.css">
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
     </head>
@@ -89,11 +90,13 @@ session_start();
             </div>
         </div>
         <!--ContentBody-->
+        <div class="contentContainer">
         <div class="spacerLarge"></div>
         <div class="pageBreak"></div>
         <h1>
             Organisation Name
         </h1>
         <div class="headingBreak"></div>
+        </div>
     </body>
 </html>

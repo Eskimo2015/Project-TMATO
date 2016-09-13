@@ -12,7 +12,6 @@
         <meta name="keywords" content="Tournament,Organiser,Tmato,Manager">
         <meta name="author" content="Noah Nathan">
         <meta name="author" content="Dion Rabone">
-
         <!--Acknowledgements-->
         <!--Graphical consultant: Giscarde Rousseau-->
         <link rel="Background image provided by:" href="http://subtlepatterns.com/page/2/?s=light">
@@ -94,6 +93,7 @@
             </div>
         </div>
         <!--ContentBody-->
+        <div class="contentContainer">
         <div class="spacerLarge"></div>
         <div class="pageBreak"></div>
         <h1>
@@ -165,6 +165,7 @@
                     ?>
                 </table>
             </div>
+        </div>
         </div>
     </body>
 </html>
