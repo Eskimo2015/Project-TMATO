@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2016 at 11:57 AM
+-- Generation Time: Sep 13, 2016 at 12:22 AM
 -- Server version: 5.7.11
 -- PHP Version: 5.6.19
 
@@ -156,13 +156,13 @@ CREATE TABLE `tournament` (
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `User_ID` int(11) NOT NULL,
-  `User_FirstName` varchar(32) NOT NULL,
-  `User_LastName` varchar(32) NOT NULL,
+  `User_ID` int(8) NOT NULL,
+  `User_FName` varchar(32) NOT NULL,
+  `User_LName` varchar(32) NOT NULL,
   `User_DOB` date NOT NULL,
-  `User_EmailAdress` varchar(64) NOT NULL,
-  `User_UserName` varchar(32) NOT NULL,
-  `User_Password` varchar(32) NOT NULL,
+  `User_Email` varchar(48) NOT NULL,
+  `User_UName` varchar(20) NOT NULL,
+  `User_Password` varchar(20) NOT NULL,
   `User_PwordHash` varchar(64) NOT NULL,
   `User_Created` date NOT NULL,
   `User_Bio` text,
@@ -174,7 +174,7 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`User_ID`, `User_FirstName`, `User_LastName`, `User_DOB`, `User_EmailAdress`, `User_UserName`, `User_Password`, `User_PwordHash`, `User_Created`, `User_Bio`, `User_DisplayName`, `User_DisplayAge`) VALUES
+INSERT INTO `user` (`User_ID`, `User_FName`, `User_LName`, `User_DOB`, `User_Email`, `User_UName`, `User_Password`, `User_PwordHash`, `User_Created`, `User_Bio`, `User_DisplayName`, `User_DisplayAge`) VALUES
 (1, 'Roger', 'Ramjet', '2001-03-17', 'roger.ramjet@jet.com', 'Rod12', 'Rod12', '', '2016-09-01', NULL, 0, 0),
 (2, 'Fred', 'Flintstone', '1947-08-31', 'fred.flintstone@bedrock.com', 'Prehistoric', 'Prehistoric', '', '2016-09-10', NULL, 0, 0),
 (3, 'Kyle', 'Reese', '2022-06-23', 'machines_rule@future.sky.net', 'WillNotStop', 'UntillYouAreDead!', '', '2016-09-12', NULL, 0, 0),
@@ -249,7 +249,7 @@ ALTER TABLE `tournament`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`User_ID`),
-  ADD UNIQUE KEY `user_UserName` (`User_UserName`);
+  ADD UNIQUE KEY `user_UserName` (`User_UName`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -299,7 +299,7 @@ ALTER TABLE `tournament`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `User_ID` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
