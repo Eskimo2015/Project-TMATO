@@ -11,7 +11,7 @@ $pword = $_POST["password"];
 $connection = mysqli_connect("localhost:3306", "root", "", "tmato_DB");
 //Step #02:  Find match for Username and Password
 $result = mysqli_query($connection, "SELECT * FROM user WHERE 
-		User_UserName LIKE '$urname' AND User_Password LIKE '$pword';");
+		User_UName LIKE '$urname' AND User_Password LIKE '$pword';");
 
 //Step #03:  If user exists then start session else print error message
 if (mysqli_fetch_row($result)) {
