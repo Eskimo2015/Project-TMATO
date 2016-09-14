@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   		$fname = test_input($_POST['firstname']);
   		// check if name only contains letters and whitespace
   		if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-  			$nameErr = "Only letters and white space allowed";
+  			$fnameErr = "Only letters and white space allowed";
   		}	
   	}
 	if (empty($_POST["lastname"])) {
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   		$lname = test_input($_POST['lastname']);
   		// check if name only contains letters and whitespace
   		if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-  			$nameErr = "Only letters and white space allowed";
+  			$lnameErr = "Only letters and white space allowed";
   		}	
   	}
 	if (empty($_POST["dob"])) {
@@ -77,8 +77,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   		mysqli_close($connection);
   	}
 }
-
-
 
 //Trims and cleans input data/strings etc.
 function test_input($data) {
