@@ -55,30 +55,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   	} else {
   		$pword = test_input($_POST["password"]);
   	}
+  	if($fnameErr == "" && $lnameErr == "" && $dobErr == "" && $emailErr == "" && $unameErr == "" && $pwordErr == "") {
+  		//Step 2:  connect to MySQL and select database in one statement
+  		$connection = mysqli_connect("localhost:3306", "root", "", "tmato_db");
+  	
+  		//Step 3:  Run query - check DB for existing account
+  		$result = mysqli_query ($connection , "SELECT User_UName FROM user WHERE
+  				User_UName LIKE '{$uname}';");
+  	
+  		//Step 4a:  If username already exists then abort registration and print message
+  		if (mysqli_fetch_row($result)) {
+  			header("Location: registration.php?reg_msg=Your chosen USERNAME is already in use!"
+  					. "  Please enter another USERNAME to create a new account...");
+  			//Step 4b:  Run query - insert form data into user table and print confirmation message
+  		} else {
+  			mysqli_query($connection, "INSERT INTO user values(NULL,'{$fname}','{$lname}','{$dob}','{$email}',
+  			'{$uname}','{$pword}','',CURDATE(),NULL,'0','0')");
+  			header("Location: registration.php?reg_msg=Your account has been created successfully!");
+  		}
+  		//Step 5:  Close connection
+  		mysqli_close($connection);
+  	}
 }
 
-if($fnameErr = $lnameErr = $dobErr = $emailErr = $unameErr = $pwordErr = "") {
-	//Step 2:  connect to MySQL and select database in one statement
-	$connection = mysqli_connect("localhost:3306", "root", "", "tmato_db");
 
-	//Step 3:  Run query - check DB for existing account
-	$result = mysqli_query ($connection , "SELECT User_UName FROM user WHERE
-			User_UName LIKE '{$uname}';");
-
-	//Step 4a:  If username already exists then abort registration and print message
-	if (mysqli_fetch_row($result)) {
-		header("Location: ../registration.php?reg_msg=Your chosen USERNAME is already in use!"
-				. "  Please enter another USERNAME to create a new account...");
-		//Step 4b:  Run query - insert form data into user table and print confirmation message
-	} else {
-		mysqli_query($connection, "INSERT INTO user values(NULL,'{$fname}','{$lname}','{$dob}','{$email}',
-		'{$uname}','{$pword}','',CURDATE(),NULL,'0','0')");
-		header("Location: ../registration.php?reg_msg=Your account has been created successfully!");
-	}
-
-	//Step 5:  Close connection
-	mysqli_close($connection);
-}
 
 //Trims and cleans input data/strings etc.
 function test_input($data) {
@@ -194,13 +194,13 @@ function test_input($data) {
                     	<span class="error">* <?php echo $fnameErr;?></span></td></tr>
                     <tr><td class="td1">Last Name:</td><td></td><td><input type="text" placeholder="Doe" name="lastname" value="<?PHP if(isset($_POST['lastname'])) echo htmlspecialchars($_POST['lastname']); ?>">
                     	<span class="error">* <?php echo $lnameErr;?></span></td></tr>
-                    <tr><td class="td1">Date Of Birth:</td><td></td><td><input type="text" placeholder="yyyy-mm-dd (e.g. 1995-10-07)" name="dob" value="<?PHP if(isset($_POST['dob'])) echo htmlspecialchars($_POST['dob']); ?>">
+                    <tr><td class="td1">Date Of Birth:</td><td></td><td><input type="text" placeholder="yyyy-mm-dd" name="dob" value="<?PHP if(isset($_POST['dob'])) echo htmlspecialchars($_POST['dob']); ?>">
                     	<span class="error">* <?php echo $dobErr;?></span></td></tr>
                     <tr><td class="td1">Email Address:</td><td></td><td><input type="text" placeholder="john_doe@lost.com" name="email" value="<?PHP if(isset($_POST['email'])) echo htmlspecialchars($_POST['email']); ?>">
                     	<span class="error">* <?php echo $emailErr;?></span></td></tr>
                     <tr><td class="td1" colspan="3"></td></tr>
                     <tr><td class="td1" colspan="3"></td></tr>
-                    <tr><td class="td1">Username:</td><td></td><td><input type="text" placeholder="Unknown123!" name="username" value="<?PHP if(isset($_POST['username'])) echo htmlspecialchars($_POST['username']); ?>">
+                    <tr><td class="td1">Username:</td><td></td><td><input type="text" placeholder="Username123!" name="username" value="<?PHP if(isset($_POST['username'])) echo htmlspecialchars($_POST['username']); ?>">
                     	<span class="error">* <?php echo $unameErr;?></span></td></tr>
                     <tr><td class="td1">Password:</td><td></td><td><input type="password" placeholder="GuessWhat?" name="password" value="<?PHP if(isset($_POST['password'])) echo htmlspecialchars($_POST['password']); ?>">
                     	<span class="error">* <?php echo $pwordErr;?></span></td></tr>
