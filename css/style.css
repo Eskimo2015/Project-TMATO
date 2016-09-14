@@ -44,6 +44,10 @@
     color: green;
     margin-left: 10px;
 }
+.error {
+	color: red;
+	font-style: italic;
+}
 /*----------------Login Fields------------------*/
 .indent_01{
     float: left;
