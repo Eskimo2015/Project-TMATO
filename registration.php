@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   	} else {
   		$fname = test_input($_POST['firstname']);
   		// check if name only contains letters and whitespace
-  		if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+  		if (!preg_match("/^[a-zA-Z ]*$/",$fname)) {
   			$fnameErr = "Only letters and white space allowed";
   		}	
   	}
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   	} else {
   		$lname = test_input($_POST['lastname']);
   		// check if name only contains letters and whitespace
-  		if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+  		if (!preg_match("/^[a-zA-Z ]*$/",$lname)) {
   			$lnameErr = "Only letters and white space allowed";
   		}	
   	}
@@ -33,6 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     	$dobErr = "DOB is required";
   	} else {
   		$dob = test_input($_POST["dob"]);
+  		// check if DOB is in correct format yyyy-mm-dd
+  		if (!preg_match("/^(19|20)[0-9]{2}-((0(1|3|5|7|8)|1(0|2))-(0[1-9]|[1-2][0-9]|3[0-1])|(0(4|6|9)|11)-(0[1-9]|[1-2][0-9]|30)|02-(0[1-9]|1[0-9]|2[0-9]))$/",$dob)) {
+  			$dobErr = "Must be the correct format yyyy-mm-dd";
+  		}	
   	}
 	if (empty($_POST["email"])) {
     	$emailErr = "Email is required";
@@ -49,11 +53,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     	$unameErr = "Username is required";
   	} else {
   		$uname = test_input($_POST["username"]);
+  		// check if name only contains letters and whitespace
+  		if (!preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W)(?=.{8,20})$/",$uname)) {
+  			$unameErr = "Must contain at least one Uppercase and one Lowercase letter,  one Digit, and at least one of the following Special Character !@#$%^&*()-_.  Must ber at least 8 to 20 characters";
+  		}	
   	}
 	if (empty($_POST["password"])) {
     	$pwordErr = "Password is required";
   	} else {
   		$pword = test_input($_POST["password"]);
+  		// check if name only contains letters and whitespace
+  		if (!preg_match("/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()-_]).{8,20}/",$pword)) {
+  			$pwordErr = "Must contain at least one Uppercase and one Lowercase letter,  one Digit, and at least one of the following Special Character !@#$%^&*()-_.  Must ber at least 8 to 20 characters";
+  		}	
   	}
   	if($fnameErr == "" && $lnameErr == "" && $dobErr == "" && $emailErr == "" && $unameErr == "" && $pwordErr == "") {
   		//Step 3:  connect to MySQL and select database in one statement
