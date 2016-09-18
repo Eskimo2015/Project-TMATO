@@ -90,7 +90,7 @@ function test_input($data) {
 function userNameCheck($uname) {
 	$data = "";
 	//Step 1:  connect to MySQL and select database in one statement
-	$connection = mysqli_connect("localhost:3306", "root", "", "tmato_db");
+	$connection = mysqli_connect("localhost:3306", "root", "", "tmato");
 	//Step 2:  Run query - check DB for existing account
 	$result = mysqli_query ($connection , "SELECT User_UName FROM user WHERE
 			User_UName LIKE '{$uname}';");
@@ -106,7 +106,7 @@ function userNameCheck($uname) {
 
 function insertUserData($fname, $lname, $dob, $email, $uname, $pword) {
 	//Step 1:  connect to MySQL and select database in one statement
-	$connection = mysqli_connect("localhost:3306", "root", "", "tmato_db");
+	$connection = mysqli_connect("localhost:3306", "root", "", "tmato");
 	
 	//Step 2:  Insert user data to User table and print confirmation message
 	mysqli_query($connection, "INSERT INTO user values(NULL,'{$fname}','{$lname}','{$dob}','{$email}',
@@ -265,7 +265,7 @@ function insertUserData($fname, $lname, $dob, $email, $uname, $pword) {
                         <th class="th_user">A/C Created</th> 
                     </tr>
                     <?php
-                    $connection = mysqli_connect("localhost:3306", "root", "", "tmato_db");
+                    $connection = mysqli_connect("localhost:3306", "root", "", "tmato");
                     $result = mysqli_query($connection, "SELECT * FROM user;");
 
                     while ($output = mysqli_fetch_row($result)) {

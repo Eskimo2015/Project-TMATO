@@ -8,7 +8,7 @@ $urname = $_POST["username"];
 $pword = $_POST["password"];
 
 //Step #01:  Establish DB Connection
-$connection = mysqli_connect("localhost:3306", "root", "", "tmato_DB");
+$connection = mysqli_connect("localhost:3306", "root", "", "tmato");
 //Step #02:  Find match for Username and Password
 $result = mysqli_query($connection, "SELECT * FROM user WHERE 
 		User_UName LIKE '$urname' AND User_Password LIKE '$pword';");

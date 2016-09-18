@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 13, 2016 at 12:22 AM
+-- Generation Time: Sep 18, 2016 at 11:04 AM
 -- Server version: 5.7.11
 -- PHP Version: 5.6.19
 
@@ -175,10 +175,16 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`User_ID`, `User_FName`, `User_LName`, `User_DOB`, `User_Email`, `User_UName`, `User_Password`, `User_PwordHash`, `User_Created`, `User_Bio`, `User_DisplayName`, `User_DisplayAge`) VALUES
-(1, 'Roger', 'Ramjet', '2001-03-17', 'roger.ramjet@jet.com', 'Rod12', 'Rod12', '', '2016-09-01', NULL, 0, 0),
-(2, 'Fred', 'Flintstone', '1947-08-31', 'fred.flintstone@bedrock.com', 'Prehistoric', 'Prehistoric', '', '2016-09-10', NULL, 0, 0),
-(3, 'Kyle', 'Reese', '2022-06-23', 'machines_rule@future.sky.net', 'WillNotStop', 'UntillYouAreDead!', '', '2016-09-12', NULL, 0, 0),
-(4, 'Maxwell', 'Smart', '1944-04-25', 'maxwell.smart@getsmart.web', 'Secret', 'Message', '', '2016-09-12', '', 0, 0);
+(1, 'Roger', 'Ramjet', '2001-03-17', 'roger.ramjet@jet.com', 'HotRod12', 'HotRod12', '', '2016-09-01', NULL, 0, 0),
+(2, 'Fred', 'Flintstone', '1947-08-31', 'fred.flintstone@bedrock.com', 'Prehistoric8', 'Prehistoric8', '', '2016-09-10', NULL, 0, 0),
+(3, 'Kyle', 'Reese', '2022-06-23', 'machines_rule@future.sky.net', 'WillNotStop2', 'UntillYouAreDead0', '', '2016-09-12', NULL, 0, 0),
+(4, 'Maxwell', 'Smart', '1944-04-25', 'maxwell.smart@getsmart.web', 'Secret3', 'Message4', '', '2016-09-12', '', 0, 0),
+(5, 'Michael', 'Jackson', '1960-08-16', 'mj@neverland.todler', 'SmoothCriminal5', 'MoonWalk6', '', '2016-09-13', NULL, 0, 0),
+(6, 'Noah', 'Nathan', '1982-02-21', 'nwnathan@hotmail.com', 'Eskimo12', 'Iceberg12', '', '2016-09-15', NULL, 0, 0),
+(7, 'Freddie', 'Kruger', '1966-06-06', 'freddie.kruger@elmstreet.dream', 'NeverSleepAgain8', 'SweetDreams95', '', '2016-09-15', NULL, 0, 0),
+(8, 'Dion', 'Rabone', '1978-12-31', 'dion@weltec.org', 'HelloWorld69', 'WebTechRules1', '', '2016-09-16', NULL, 0, 0),
+(9, 'Joseph', 'Stalin', '1901-04-04', 'joseph.stalin@tyrant.web', 'Propaganda2', 'IronCurtain9', '', '2016-09-16', NULL, 0, 0),
+(10, 'Arse', 'Wipe', '1900-01-01', 'arse.wipe@backside.net', 'Unstained6', 'Unstained6', '', '2016-09-18', NULL, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -299,7 +305,7 @@ ALTER TABLE `tournament`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `User_ID` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `User_ID` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
