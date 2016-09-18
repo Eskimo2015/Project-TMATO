@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   		$fname = test_input($_POST['firstname']);
   		// check if name only contains letters and whitespace
   		if (!preg_match("/^[a-zA-Z '-]*$/",$fname)) {
-  			$fnameErr = "Only letters and white space allowed!";
+  			$fnameErr = "Only letters, hyphens(-), apostrophes (') and white space are permitted!";
   		} else if(!preg_match("/^[a-zA-Z '-]{0,32}$/",$fname)) {
   			$fnameErr = "First Name must NOT exceed 32 characters!";
   		}	
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   		$lname = test_input($_POST['lastname']);
   		// check if name only contains letters and whitespace
   		if (!preg_match("/^[a-zA-Z '-]*$/",$lname)) {
-  			$lnameErr = "Only letters and white space allowed!";
+  			$lnameErr = "Only letters, hyphens(-), apostrophes (') and white space are permitted!";
   		} else if(!preg_match("/^[a-zA-Z '-]{0,32}$/",$lname)) {
   			$lnameErr = "Last Name must NOT exceed 32 characters!";
   		}	
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   		$dob = test_input($_POST["dob"]);
   		// check if DOB is in correct format yyyy-mm-dd
   		if (!preg_match("/^(19|20)[0-9]{2}-((0(1|3|5|7|8)|1(0|2))-(0[1-9]|[1-2][0-9]|3[0-1])|(0(4|6|9)|11)-(0[1-9]|[1-2][0-9]|30)|02-(0[1-9]|1[0-9]|2[0-9]))$/",$dob)) {
-  			$dobErr = "Date must be in correct format YYYY-MM-DD!  Must be between 1900-01-01 and 2099-12-31.";
+  			$dobErr = "Date must be in correct format YYYY-MM-DD!  Must be between 1900-01-01 and 2099-12-31.  NOTE: *29 days in February!*";
   		}	
   	}
 	if (empty($_POST["email"])) {
