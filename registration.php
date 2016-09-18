@@ -39,38 +39,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   		$dob = test_input($_POST["dob"]);
   		// check if DOB is in correct format yyyy-mm-dd
   		if (!preg_match("/^(19|20)[0-9]{2}-((0(1|3|5|7|8)|1(0|2))-(0[1-9]|[1-2][0-9]|3[0-1])|(0(4|6|9)|11)-(0[1-9]|[1-2][0-9]|30)|02-(0[1-9]|1[0-9]|2[0-9]))$/",$dob)) {
-  			$dobErr = "Date must be in correct format yyyy-mm-dd.  Also date must be between 1900-01-01 and 2099-12-31";
+  			$dobErr = "Date must be in correct format yyyy-mm-dd!  Must be between 1900-01-01 and 2099-12-31.";
   		}	
   	}
 	if (empty($_POST["email"])) {
-    	$emailErr = "Email is required";
+    	$emailErr = "Email is required!";
   	} else {
   		$email = test_input($_POST["email"]);
   		//Remove all illegal characters except a-zA-Z0-9!#$%&'*+-/=?^_`{|}~@.[]
   		$email = filter_var($email, FILTER_SANITIZE_EMAIL);
   		// check if e-mail address is well-formed
   		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  			$emailErr = "Invalid email format";
+  			$emailErr = "Invalid email format!  Must be well formed e.g. contain only ONE '@' and end in '.com' etc.";
   		}
   	}
 	if (empty($_POST["username"])) {
-    	$unameErr = "Username is required";
+    	$unameErr = "Username is required!";
   	} else {
   		$uname = test_input($_POST["username"]);
   		// check if name only contains letters and whitespace
-  		if (!preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,20}$/",$uname)) {
-  			$unameErr = "Must contain at least one Uppercase and one Lowercase letter,  one Digit, and at least one of the following Special Character !@#$%^&*()-_.  Must ber at least 8 to 20 characters";
+  		if (!preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?!.*[\W\x7B-\xFF]).{8,16}$/",$uname)) {
+  			$unameErr = "Must contain 8 to 16 characters - at least ONE Uppercase letter, ONE Lowercase letter and ONE Digit!  Must NOT contain white space or special characters except underscores (_).";
   		} else {
   			$unameErr = userNameCheck($uname);
   		}
   	}
 	if (empty($_POST["password"])) {
-    	$pwordErr = "Password is required";
+    	$pwordErr = "Password is required!";
   	} else {
   		$pword = test_input($_POST["password"]);
   		// check if name only contains letters and whitespace
-  		if (!preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,20}$/",$pword)) {
-  			$pwordErr = "Must contain at least one Uppercase and one Lowercase letter,  one Digit, and at least one of the following Special Character !@#$%^&*()-_.  Must ber at least 8 to 20 characters";
+  		if (!preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?!.*[\W\x7B-\xFF]).{8,16}$/",$pword)) {
+  			$pwordErr = "Must contain 8 to 16 characters - at least ONE Uppercase letter, ONE Lowercase letter and ONE Digit!  Must NOT contain white space or special characters except underscores (_).";
   		}	
   	}
   	if($fnameErr == "" && $lnameErr == "" && $dobErr == "" && $emailErr == "" && $unameErr == "" && $pwordErr == "") {
@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //Trims and cleans input data/strings etc.
 function test_input($data) {
 	$data = trim($data);
-	$data = stripslashes($data);
+	//$data = stripslashes($data);
 	$data = htmlspecialchars($data);
 	return $data;
 }
