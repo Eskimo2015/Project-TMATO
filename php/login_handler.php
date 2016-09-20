@@ -8,7 +8,20 @@ $urname = $_POST["username"];
 $pword = $_POST["password"];
 
 //Step #01:  Establish DB Connection
-$connection = mysqli_connect("localhost:3306", "root", "", "tmato_DB");
+$connection = mysqli_connect("localhost:3306", "root", "", "tmato");
+
+//Check connection
+if (mysqli_connect_errno()) {
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
+}
+
+if (!mysqli_query($connection, "SET a=1")) {
+	printf("Errormessage: %s\n", mysqli_error($connection));
+} else {
+	
+}
+
 //Step #02:  Find match for Username and Password
 $result = mysqli_query($connection, "SELECT * FROM user WHERE 
 		User_UName LIKE '$urname' AND User_Password LIKE '$pword';");
@@ -20,9 +33,9 @@ if (mysqli_fetch_row($result)) {
     $_SESSION["loggedin"] = true;
     $_SESSION["user"] = $urname;
 
-    header("Location: ../user_account.php?login_msg=Welcome '" . $urname . "'");
+    header("Location: ../user_account.php?welcome_msg=Welcome '" . $urname . "'");
 } else {
-    header("Location: ../homepage.php?login_msg=Your login details were NOT recognised!"
+    header("Location: ../homepage.php?login_fail_msg=Your login details were NOT recognised!"
             . "  Please re-enter your login details...");
 }
 

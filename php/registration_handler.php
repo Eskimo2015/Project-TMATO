@@ -1,6 +1,7 @@
 <?php
+//NOTE:  *THIS SCRIPT IS CRRENTLY DE-COMMISIONED!*
 //Created by: 	Noah Nathan
-//Date:			00/08/2016
+//Date:			15/08/2016
 //Purpose:  	Register new user and store account details to DB
 
 //Create database from MySQL first
