@@ -128,4 +128,5 @@ body {
 }
 .table_nav {
 	width: 80%;	
+	border-collapse: collapse;
 }

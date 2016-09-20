@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <?php
-session_start();
 //Created by: 	Noah Nathan
 //Date:			12/09/2016
 //Purpose:  	Validate Registration Form - fields
+
+session_start();
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+	$_SESSION['loggedin'] = true;
+} else {
+	$_SESSION['loggedin'] = false;
+}
 
 //Step 1:  Define variables and set to empty values
 $fname = $lname = $dob = $email = $uname = $pword = "";
@@ -111,7 +117,7 @@ function insertUserData($fname, $lname, $dob, $email, $uname, $pword) {
 	//Step 2:  Insert user data to User table and print confirmation message
 	mysqli_query($connection, "INSERT INTO user values(NULL,'{$fname}','{$lname}','{$dob}','{$email}',
 	'{$uname}','{$pword}','',CURDATE(),NULL,'0','0')");
-	header("Location: registration.php?reg_msg=Your account has been created successfully!");
+	header("Location: registration.php?reg_success_msg=Your account has been created successfully!");
 	
 	//Step 3:  Close connection
 	mysqli_close($connection);
@@ -132,6 +138,11 @@ function insertUserData($fname, $lname, $dob, $email, $uname, $pword) {
         <link rel="Background image provided by:" href="http://subtlepatterns.com/page/2/?s=light">
         <link rel="Logo font provided by:" href="http://www.dafont.com/chavelite.font ">
         <!--endOf-->
+        <script>
+			function resetForm() {
+			    document.getElementById("regForm").reset();
+			}
+		</script>
     </head>
     <body>
         <!--Banner-->
@@ -140,19 +151,22 @@ function insertUserData($fname, $lname, $dob, $email, $uname, $pword) {
                 <table class="table_header">
                     <tr>
                         <td><a href = "homepage.php"><img src="resources\images\tmato.png" class="logo"></a></td>
+                        <td>
+                        <?php
+							if (!empty($_GET['welcome_msg'])) {
+                                $message = $_GET['welcome_msg'];
+                                echo "<p class='welcome_msg'>$message</p>";
+                            }
+                        ?> 
+                        </td>
                     </tr>
                     <tr>
                         <td><div class="spacerSmall"></div></td>
-                            <?php
-                            
-                            ?> 
                     </tr>
                     <tr>
                     	<td>
                         <?php
-                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-                        	$_SESSION['loggedin'] = true;
-                        } else {
+                        if ($_SESSION['loggedin'] == false) {
                         	echo "
 	                            <label class='indent_01'>UserName:  </label>
 	                            <input class='indent_01' type='text' name='username'>
@@ -165,26 +179,25 @@ function insertUserData($fname, $lname, $dob, $email, $uname, $pword) {
                      	</td>
                         <td>
                             <?php
-							if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+							if ($_SESSION['loggedin'] == true) {
                                 echo "<p align='center'>You are currently logged in as " . $_SESSION['user'] . " !</p>"
                                 ;
                             } else {
-                                $_SESSION['loggedin'] = false;
-                            }
-                            if (!empty($_GET['login_msg'])) {
-                                $message = $_GET['login_msg'];
+                            if (!empty($_GET['login_fail_msg'])) {
+                                $message = $_GET['login_fail_msg'];
                                 echo "<p class='login_fail_msg'>$message</p>";
                             }
                             if (!empty($_GET['logout_msg'])) {
                                 $message = $_GET['logout_msg'];
-                                echo "<p class='confirm_msg'>$message</p>";
+                                echo "<p class='logout_msg'>$message</p>";
+                            }
                             }
                             ?>
                         </td>
                         <td align="right">
                         <p align="right">
                         <?php
-                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                        if ($_SESSION['loggedin'] == true) {
                         	echo "<a href='php/logout_handler.php' class='cleanLink'>logout</a>";
                         } else {
                             echo "<a href='registration.php' class='cleanLink'>Register</a>";
@@ -217,31 +230,31 @@ function insertUserData($fname, $lname, $dob, $email, $uname, $pword) {
         </h1>
         <div class="headingBreak"></div>
         <div class="setBodyMargin">
-            <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <form id="regForm" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                 <table class="tb1">
-                    <tr><td class="td1">First Name:</td><td></td><td><input type="text" placeholder="John" name="firstname" value="<?PHP if(isset($_POST['firstname'])) echo htmlspecialchars($_POST['firstname']); ?>">
-                    	<span class="error">* <?php echo $fnameErr;?></span></td></tr>
-                    <tr><td class="td1">Last Name:</td><td></td><td><input type="text" placeholder="Doe" name="lastname" value="<?PHP if(isset($_POST['lastname'])) echo htmlspecialchars($_POST['lastname']); ?>">
-                    	<span class="error">* <?php echo $lnameErr;?></span></td></tr>
-                    <tr><td class="td1">Date Of Birth:</td><td></td><td><input type="text" placeholder="yyyy-mm-dd" name="dob" value="<?PHP if(isset($_POST['dob'])) echo htmlspecialchars($_POST['dob']); ?>">
-                    	<span class="error">* <?php echo $dobErr;?></span></td></tr>
-                    <tr><td class="td1">Email Address:</td><td></td><td><input type="text" placeholder="john_doe@lost.com" name="email" value="<?PHP if(isset($_POST['email'])) echo htmlspecialchars($_POST['email']); ?>">
-                    	<span class="error">* <?php echo $emailErr;?></span></td></tr>
+                    <tr><td class="td1">First Name:</td><td></td><td><input class="input_reg_form" type="text" placeholder="John" name="firstname" value="<?PHP if(isset($_POST['firstname'])) echo htmlspecialchars($_POST['firstname']); ?>"></td>
+                    	<td><span class="error">* <?php echo $fnameErr;?></span></td></tr>
+                    <tr><td class="td1">Last Name:</td><td></td><td><input class="input_reg_form" type="text" placeholder="Doe" name="lastname" value="<?PHP if(isset($_POST['lastname'])) echo htmlspecialchars($_POST['lastname']); ?>"></td>
+                    	<td><span class="error">* <?php echo $lnameErr;?></span></td></tr>
+                    <tr><td class="td1">Date Of Birth:</td><td></td><td><input class="input_reg_form" type="text" placeholder="yyyy-mm-dd" name="dob" value="<?PHP if(isset($_POST['dob'])) echo htmlspecialchars($_POST['dob']); ?>"></td>
+                    	<td><span class="error">* <?php echo $dobErr;?></span></td></tr>
+                    <tr><td class="td1">Email Address:</td><td></td><td><input class="input_reg_form" type="text" placeholder="john_doe@lost.com" name="email" value="<?PHP if(isset($_POST['email'])) echo htmlspecialchars($_POST['email']); ?>"></td>
+                    	<td><span class="error">* <?php echo $emailErr;?></span></td></tr>
                     <tr><td class="td1" colspan="3"></td></tr>
                     <tr><td class="td1" colspan="3"></td></tr>
-                    <tr><td class="td1">Username:</td><td></td><td><input type="text" placeholder="Username123!" name="username" value="<?PHP if(isset($_POST['username'])) echo htmlspecialchars($_POST['username']); ?>">
-                    	<span class="error">* <?php echo $unameErr;?></span></td></tr>
-                    <tr><td class="td1">Password:</td><td></td><td><input type="password" placeholder="GuessWhat?" name="password" value="<?PHP if(isset($_POST['password'])) echo htmlspecialchars($_POST['password']); ?>">
-                    	<span class="error">* <?php echo $pwordErr;?></span></td></tr>
+                    <tr><td class="td1">Username:</td><td></td><td><input class="input_reg_form" type="text" placeholder="Username123!" name="username" value="<?PHP if(isset($_POST['username'])) echo htmlspecialchars($_POST['username']); ?>"></td>
+                    	<td><span class="error">* <?php echo $unameErr;?></span></td></tr>
+                    <tr><td class="td1">Password:</td><td></td><td><input class="input_reg_form" type="password" placeholder="GuessWhat?" name="password" value="<?PHP if(isset($_POST['password'])) echo htmlspecialchars($_POST['password']); ?>"></td>
+                    	<td><span class="error">* <?php echo $pwordErr;?></span></td></tr>
                     <tr><td class="td1" colspan="3"></td></tr>
                     <tr><td class="td1" colspan="3"></td></tr>
                     <tr class="tr1" style="text-align:center"><td class="td1" colspan="3"><input class="btn" type="submit" name="submit" value="Register"></td></tr>
-                    <tr class="tr1" style="text-align:center"><td class="td1" colspan="3"><input class="btn" type="reset" name="reset" value="Reset"></td></tr>
+                    <tr class="tr1" style="text-align:center"><td class="td1" colspan="3"><input class="btn" type="reset" name="reset" value="Reset" onclick="resetForm()"></td></tr>
                     <tr>
-                        <td class="reg_msg" colspan="3">
+                        <td class="reg_success_msg" colspan="3">
                             <?php
-                            if (!empty($_GET['reg_msg'])) {
-                                $message = $_GET['reg_msg'];
+                            if (!empty($_GET['reg_success_msg'])) {
+                                $message = $_GET['reg_success_msg'];
                                 echo "<p>$message</p>";
                             }
                             ?>
@@ -262,7 +275,7 @@ function insertUserData($fname, $lname, $dob, $email, $uname, $pword) {
                         <th class="th_user">Email</th>
                         <th class="th_user">Username</th>
                         <th class="th_user">Password</th>
-                        <th class="th_user">A/C Created</th> 
+                        <th class="th_user">Account Created</th> 
                     </tr>
                     <?php
                     $connection = mysqli_connect("localhost:3306", "root", "", "tmato");

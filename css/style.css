@@ -18,6 +18,9 @@
 .td1 {
     padding: 5px;
 }
+.input_reg_form  {
+	width: 250px;	
+}
 /*----------------Headers------------------*/
 .tbl_header {
     font-size: 14pt;
@@ -25,7 +28,7 @@
     text-align: center;
 }
 /*---------------Messages------------------*/
-.reg_msg {
+.reg_success_msg {
     color: green;
     text-align: center;
 }
@@ -39,10 +42,12 @@
 .login_fail_msg {
     color: green;
     margin-left: 10px;
+    text-align: center;
 }
-.confirm_msg {
+.logout_msg {
     color: green;
     margin-left: 10px;
+    text-align: center;
 }
 .error {
 	color: red;
@@ -60,16 +65,15 @@
 }
 .tbl_user {
     margin: auto;
-    border-style: solid;
+    border-collapse: collapse;
+    border: 1px solid black;
 }
 .th_user {
-    border-style: solid; 
-    border-width: .5px;
+    border: 1px solid black;
     font-weight: bold;
 }
 .td_user {
-    border-style: solid; 
-    border-width: .5px;
-    padding: 5px;
+    border: 1px solid black;
+    padding: 10px;
 }
 /*-----------------------------------------*/
