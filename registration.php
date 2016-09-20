@@ -147,7 +147,7 @@ function insertUserData($fname, $lname, $dob, $email, $uname, $pword) {
     <body>
         <!--Banner-->
         <div class="nonScroll">
-            <form method="post" action="php/login_handler.php">
+            <form method="post" action="handlers/login_handler.php">
                 <table class="table_header">
                     <tr>
                         <td><a href = "homepage.php"><img src="resources\images\tmato.png" class="logo"></a></td>
@@ -198,7 +198,7 @@ function insertUserData($fname, $lname, $dob, $email, $uname, $pword) {
                         <p align="right">
                         <?php
                         if ($_SESSION['loggedin'] == true) {
-                        	echo "<a href='php/logout_handler.php' class='cleanLink'>logout</a>";
+                        	echo "<a href='handlers/logout_handler.php' class='cleanLink'>logout</a>";
                         } else {
                             echo "<a href='registration.php' class='cleanLink'>Register</a>";
                         }

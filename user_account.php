@@ -7,6 +7,11 @@ Dislays user account details.
 -->
 <?php
 session_start();
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+	$_SESSION['loggedin'] = true;
+} else {
+	$_SESSION['loggedin'] = false;
+}
 ?>
 <html>
     <head>
@@ -26,7 +31,7 @@ session_start();
     <body>
         <!--Banner-->
         <div class="nonScroll">
-            <form method="post" action="php/login_handler.php">
+            <form method="post" action="handlers/login_handler.php">
                 <table class="table_header">
                     <tr>
                         <td><a href = "homepage.php"><img src="resources\images\tmato.png" class="logo"></a></td>
@@ -77,7 +82,7 @@ session_start();
                         <p align="right">
                         <?php
                         if ($_SESSION['loggedin'] == true) {
-                        	echo "<a href='php/logout_handler.php' class='cleanLink'>logout</a>";
+                        	echo "<a href='handlers/logout_handler.php' class='cleanLink'>logout</a>";
                         } else {
                             echo "<a href='registration.php' class='cleanLink'>Register</a>";
                         }
