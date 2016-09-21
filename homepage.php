@@ -29,7 +29,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             <form method="post" action="handlers/login_handler.php">
                 <table class="table_header">
                     <tr>
-                        <td><a href = "homepage.php"><img src="resources\images\tmato.png" class="logo"></a></td>
+                        <td><a href = "homepage.php"><img src="resources/images/tmato.png" class="logo"></a></td>
                         <td>
                         <?php
 							if (!empty($_GET['welcome_msg'])) {
