@@ -19,8 +19,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         <meta name="co-author" content="Noah Nathan">
         <!--Acknowledgements-->
         <!--Graphical consultant: Giscarde Rousseau-->
-        <link rel="Background image provided by:" href="http://subtlepatterns.com/page/2/?s=light">
-        <link rel="Logo font provided by:" href="http://www.dafont.com/chavelite.font ">
+        <!--Background image provided by: http://subtlepatterns.com/page/2/?s=light-->
+        <!--Logo font provided by: http://www.dafont.com/chavelite.font-->
         <!--endOf-->
     </head>
     <body>
