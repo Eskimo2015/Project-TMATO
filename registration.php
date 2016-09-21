@@ -64,8 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   	} else {
   		$uname = test_input($_POST["username"]);
   		// check if name only contains letters and whitespace
-  		if (!preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?!.*[\W\x7B-\xFF]).{8,16}$/",$uname)) {
-  			$unameErr = "Must contain 8 to 16 characters - at least ONE Uppercase letter, ONE Lowercase letter and ONE Digit!  Must NOT contain white space or special characters except underscores (_).";
+  		if (!preg_match("/^\w{3,16}$/",$uname)) {
+  			$unameErr = "Must contain 3 to 16 characters - Must NOT contain white space or special characters except underscores (_).";
   		} else {
   			$unameErr = userNameCheck($uname);
   		}
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   	} else {
   		$pword = test_input($_POST["password"]);
   		// check if name only contains letters and whitespace
-  		if (!preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?!.*[\W\x7B-\xFF]).{8,16}$/",$pword)) {
+  		if (!preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d_]{8,16}$/",$pword)) {
   			$pwordErr = "Must contain 8 to 16 characters - at least ONE Uppercase letter, ONE Lowercase letter and ONE Digit!  Must NOT contain white space or special characters except underscores (_).";
   		}	
   	}

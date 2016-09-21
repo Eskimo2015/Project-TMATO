@@ -19,8 +19,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         <meta name="co-author" content="Noah Nathan">
         <!--Acknowledgements-->
         <!--Graphical consultant: Giscarde Rousseau-->
-        <link rel="Background image provided by:" href="http://subtlepatterns.com/page/2/?s=light">
-        <link rel="Logo font provided by:" href="http://www.dafont.com/chavelite.font ">
+        <!--Background image provided by: http://subtlepatterns.com/page/2/?s=light-->
+        <!--Logo font provided by: http://www.dafont.com/chavelite.font-->
         <!--endOf-->
     </head>
     <body>
@@ -29,7 +29,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             <form method="post" action="handlers/login_handler.php">
                 <table class="table_header">
                     <tr>
-                        <td><a href = "homepage.php"><img src="resources\images\tmato.png" class="logo"></a></td>
+                        <td><a href = "homepage.php"><img src="resources/images/tmato.png" alt="Tmato Logo looks like a tomato" class="logo"></a></td>
                         <td>
                         <?php
 							if (!empty($_GET['welcome_msg'])) {
