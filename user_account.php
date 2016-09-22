@@ -60,9 +60,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                      	</td> 
                     </tr>
                     <tr>
-                        <td><div class="spacerSmall"></div></td>
-                    </tr>
-                    <tr>
                     	<td>
                      	</td>
                         <td>
@@ -99,7 +96,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         <!--ContentBody-->
         <div class="contentContainer">
         <div class="spacerLarge"></div>
-        <div class="pageBreak"></div>
         <h1>
             <?php
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
@@ -110,7 +106,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             }
             ?>  
         </h1>
-        <div class="headingBreak"></div>
+        <div class="pageBreak"></div>
         <div>
             <br><br>
             <div class="div_user">
@@ -119,36 +115,36 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                         $connection = mysqli_connect("localhost:3306", "root", "", "tmato");
                         $result = mysqli_query($connection, "SELECT * FROM user where User_UName LIKE '{$_SESSION["user"]}';");
-
+						
+                        echo"<h1>About</h1><div class='headingBreak'></div>";
+                        
                         while ($output = mysqli_fetch_row($result)) {
                             echo"
-			                    <tr>
-			                        <th class='tbl_header' colspan='2'>User Details:</th> 
-			                    </tr>
-                                <tr>
-                                    <td class='th_user'>User ID</td><td class='td_user'>$output[0]</td>
-                                </tr>
-                                <tr>
-                                    <td class='th_user'>First Name</td><td class='td_user'>$output[1]</td>
-                                </tr>
-                                <tr>
-                                    <td class='th_user'>Last Name</td><td class='td_user'>$output[2]</td>
-                                </tr>
-                                <tr>
-                                    <td class='th_user'>DOB</td><td class='td_user'>$output[3]</td>
-                                </tr>
-                                <tr>
-                                    <td class='th_user'>Email</td><td class='td_user'>$output[4]</td>
-                                </tr>
-                                <tr>
-                                    <td class='th_user'>Username</td><td class='td_user'>$output[5]</td>
-                                </tr>
-                                <tr>
-                                    <td class='th_user'>Password</td><td class='td_user'>$output[6]</td>
-                                </tr>
-                                <tr>
-                                    <td class='th_user'>A/C Created</td><td class='td_user'>$output[8]</td>
-                                </tr>
+								<p>
+									Name: $output[1] $output[2]
+								</p>
+								<p>
+									Date of birth: $output[3]
+								</p>
+								<p>
+									Email Address: $output[4]
+								</p>
+								<p>
+									Account Created: $output[8]
+								</p>
+								<p>
+									Bio: N/A
+								</p>
+								
+								<h1>Teams</h1><div class='headingBreak'></div>
+								<p>
+									N/A
+								</p>
+								
+								<h1>Organisations</h1><div class='headingBreak'></div>
+								<p>
+									N/A
+								</p>
                             ";
                         }
 
