@@ -22,61 +22,44 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                         <td><a href = "homepage.php"><img src="resources\images\tmato.png" class="logo"></a></td>
                         <td>
                         <?php
-							if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-								if (!empty($_GET['login_msg'])) {
-	                                $message = $_GET['login_msg'];
-	                                echo "<p class='welcome_msg'>$message</p>";
-	                            }
+							if (!empty($_GET['welcome_msg'])) {
+                                $message = $_GET['welcome_msg'];
+                                echo "<p class='welcome_msg'>$message</p>";
                             }
-                            ?> 
+                        ?> 
                         </td>
+                        <td align="right">
+                        <p align="right">
+                        <?php
+                        if ($_SESSION['loggedin'] == true) {
+                        	echo "<a href='handlers/logout_handler.php' class='cleanLink'>logout</a>";
+                        } else {
+                            echo "<a href='login.php' class='cleanLink'>Login</a> / <a href='registration.php' class='cleanLink'>Register</a>";
+                        }
+                        ?> 
+                        </p>
+                     	</td> 
                     </tr>
                     <tr>
                         <td><div class="spacerSmall"></div></td>
                     </tr>
                     <tr>
                     	<td>
-                        <?php
-                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-                        	$_SESSION['loggedin'] = true;
-                        } else {
-                        	echo "
-	                            <label class='indent_01'>UserName:  </label>
-	                            <input class='indent_01' type='text' name='username'>
-	                            <label class='indent_01'>Password:  </label>
-	                            <input class='indent_01' type='password' name='password'>
-	                            <input class='indent_01' type='submit' value='Login'>
-                        	";
-                        }
-                        ?>  
                      	</td>
                         <td>
                             <?php
-							if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+							if ($_SESSION['loggedin'] == true) {
                                 echo "<p align='center'>You are currently logged in as " . $_SESSION['user'] . " !</p>"
                                 ;
                             } else {
-                            if (!empty($_GET['login_msg'])) {
-                                $message = $_GET['login_msg'];
-                                echo "<p class='login_fail_msg'>$message</p>";
-                            }
                             if (!empty($_GET['logout_msg'])) {
                                 $message = $_GET['logout_msg'];
-                                echo "<p class='confirm_msg'>$message</p>";
+                                echo "<p class='logout_msg'>$message</p>";
                             }
                             }
                             ?>
                         </td>
-                        <td align="right">
-                        <p align="right">
-                        <?php
-                        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-                        	echo "<a href='handlers/logout_handler.php' class='cleanLink'>logout</a>";
-                        } else {
-                            echo "<a href='registration.php' class='cleanLink'>Register</a>";
-                        }
-                        ?> 
-                        </p>
+                        <td>
                      	</td> 
                     </tr>
                 </table>

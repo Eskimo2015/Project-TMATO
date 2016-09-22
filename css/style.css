@@ -41,7 +41,6 @@
 }
 .login_fail_msg {
     color: green;
-    margin-left: 10px;
     text-align: center;
 }
 .logout_msg {
