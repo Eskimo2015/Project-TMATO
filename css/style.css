@@ -75,4 +75,14 @@
     border: 1px solid black;
     padding: 10px;
 }
+/*---------------Drop Menus-----------------*/
+.user_settings_drop_menu {
+    right: 0px;
+	display-image: src="..\resources\images\tmato.png";
+}
+/*-----------------------------------------*/
+.td_settings {
+	vertical-align: top;
+    text-align: right;
+}
 /*-----------------------------------------*/

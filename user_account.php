@@ -43,8 +43,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                             }
                         ?> 
                         </td>
-                        <td align="right">
-                        <p align="right">
+                        <td class="td_settings">
                         <?php
                         if ($_SESSION['loggedin'] == true) {
                         	echo "<a href='handlers/logout_handler.php' class='cleanLink'>logout</a>";
@@ -52,7 +51,12 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                             echo "<a href='login.php' class='cleanLink'>Login</a> / <a href='registration.php' class='cleanLink'>Register</a>";
                         }
                         ?> 
-                        </p>
+                        <select name="settings" class="user_settings_drop_menu">
+						   <option value="one">One</option>
+						   <option value="two">Two</option>
+						   <option value="three">Three</option>
+						   <option value="four">Four</option>
+						</select> 
                      	</td> 
                     </tr>
                     <tr>

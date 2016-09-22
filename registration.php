@@ -159,8 +159,7 @@ function insertUserData($fname, $lname, $dob, $email, $uname, $pword) {
                             }
                         ?> 
                         </td>
-                        <td align="right">
-                        <p align="right">
+                        <td  class="td_settings">
                         <?php
                         if ($_SESSION['loggedin'] == true) {
                         	echo "<a href='handlers/logout_handler.php' class='cleanLink'>logout</a>";
@@ -168,7 +167,6 @@ function insertUserData($fname, $lname, $dob, $email, $uname, $pword) {
                             echo "<a href='login.php' class='cleanLink'>Login</a> / <a href='registration.php' class='cleanLink'>Register</a>";
                         }
                         ?> 
-                        </p>
                      	</td> 
                     </tr>
                     <tr>
