@@ -84,7 +84,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             <div>
                 <table class="table_nav">
                     <tr class="banner">
-                        <td><a href ="user_account.php">User</a></td>
+                        <td><a href ="user.php">User</a></td>
                         <td><a href ="team.php">Team</a></td>
                         <td><a href ="tournament.php">Tournament</a></td>
                         <td><a href ="organisation.php">Organisation</a></td>
@@ -112,10 +112,11 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             <div class="div_user">
                 <table class="tbl_user">
                     <?php
+                    
                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                         $connection = mysqli_connect("localhost:3306", "root", "", "tmato");
                         $result = mysqli_query($connection, "SELECT * FROM user where User_UName LIKE '{$_SESSION["user"]}';");
-						
+                        
                         echo"<h1>About</h1><div class='headingBreak'></div>";
                         
                         while ($output = mysqli_fetch_row($result)) {
@@ -136,6 +137,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 									Bio: N/A
 								</p>
 								
+								<div class='spacerSmall'></div>
 								<h1>Teams</h1><div class='headingBreak'></div>
 								<p>
 									N/A

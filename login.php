@@ -73,7 +73,7 @@ function createSession($urname) {
 	session_start();
 	$_SESSION["loggedin"] = true;
 	$_SESSION["user"] = $urname;
-	header("Location: user_account.php?welcome_msg=Welcome '" . $urname . "'");
+	header("Location: user.php?welcome_msg=Welcome '" . $urname . "'");
 }
 
 function loginFail() {
@@ -155,7 +155,7 @@ function loginFail() {
             <div>
                 <table class="table_nav">
                     <tr class="banner">
-                        <td><a href ="user_account.php">User</a></td>
+                        <td><a href ="user.php">User</a></td>
                         <td><a href ="team.php">Team</a></td>
                         <td><a href ="tournament.php">Tournament</a></td>
                         <td><a href ="organisation.php">Organisation</a></td>

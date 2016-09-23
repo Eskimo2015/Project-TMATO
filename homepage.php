@@ -76,7 +76,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             <div>
                 <table class="table_nav">
                     <tr class="banner">
-                        <td><a href ="user_account.php">User</a></td>
+                        <td><a href ="user.php">User</a></td>
                         <td><a href ="team.php">Team</a></td>
                         <td><a href ="tournament.php">Tournament</a></td>
                         <td><a href ="organisation.php">Organisation</a></td>
