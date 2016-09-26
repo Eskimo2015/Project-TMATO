@@ -1,15 +1,8 @@
 <!DOCTYPE html>
-<?php
+<?php include 'session.php';
 //Created by: 	Noah Nathan
 //Date:			12/09/2016
 //Purpose:  	Validate Registration Form - fields
-
-session_start();
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-	$_SESSION['loggedin'] = true;
-} else {
-	$_SESSION['loggedin'] = false;
-}
 
 //Step 1:  Define variables and set to empty values
 $fname = $lname = $dob = $email = $uname = $pword = "";
@@ -146,50 +139,10 @@ function insertUserData($fname, $lname, $dob, $email, $uname, $pword) {
     </head>
     <body>
         <!--Banner-->
-        <div class="nonScroll">
-                <table class="table_header">
-                    <tr>
-                        <td><a href = "homepage.php"><img src="resources\images\tmato.png" class="logo"></a></td>
-                        <td>
-                        </td>
-                        <td  class="td_settings">
-                        <?php
-                        if ($_SESSION['loggedin'] == true) {
-                        	echo "<span class='login_status'>Logged in as " . $_SESSION['user'] . ":</span><a href='logout.php' class='cleanLink'>logout</a>";
-                        } else {
-                            echo "<a href='login.php' class='cleanLink'>Login</a> / <a href='registration.php' class='cleanLink'>Register</a>";
-                        }
-                        ?> 
-                     	</td> 
-                    </tr>
-                    <tr>
-                        <td><div class="spacerSmall"></div></td>
-                    </tr>
-                    <tr>
-                    	<td>
-                     	</td>
-                        <td>
-                        </td>
-                        <td>
-                     	</td> 
-                    </tr>
-                </table>
-            <div class="pageBreak"></div>
-            <div>
-                <table class="table_nav">
-                    <tr class="banner">
-                        <td><a href ="user.php">User</a></td>
-                        <td><a href ="team.php">Team</a></td>
-                        <td><a href ="tournament.php">Tournament</a></td>
-                        <td><a href ="organisation.php">Organisation</a></td>
-                        <!---<td class="hideElement"></td>-->
-                    </tr>
-                </table>	
-            </div>
-        </div>
+        <?php include 'banner.php'; ?>
         <!--ContentBody-->
         <div class="contentContainer">
-        <div class="spacerLarge"></div>
+        <div class="pageBreak"></div>
         <h1>
             Registration
         </h1>

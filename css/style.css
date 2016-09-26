@@ -89,4 +89,6 @@
 /*-----------------------------------------*/
 .login_status {
 	margin-right:  20px;
+	color: Green;
+	font-weight: bold;
 }

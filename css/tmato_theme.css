@@ -126,7 +126,7 @@ body {
 	border-spacing: 0;
     table-layout: fixed;
     width: 80%;
-    /*border-style: solid;*/
+    /*border: solid;*/
 }
 .table_nav {
 	width: 80%;	
