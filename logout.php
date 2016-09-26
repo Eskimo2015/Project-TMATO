@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <?php
 session_start();
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-	$_SESSION['loggedin'] = true;
-} else {
-	$_SESSION['loggedin'] = false;
-}
+session_destroy();
+unset($_SESSION );
 ?>
 <html>
     <head>
-        <title>Tournament</title>
-        <link rel="stylesheet" type="text/css" href="css/tmato_theme.css">
+        <title>Logout</title>
+        <link rel="stylesheet" type="text/css" href="css/tmato_theme.css"/>
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <meta charset="UTF-8">
+        <meta name="description" content="Team manager and tournament organiser">
+        <meta name="keywords" content="Tournament,Organiser,Tmato,Manager">
+        <meta name="author" content="Dion Rabone">
+        <meta name="co-author" content="Noah Nathan">
+        <!--Acknowledgements-->
+        <!--Graphical consultant: Giscarde Rousseau-->
+        <!--Background image provided by: http://subtlepatterns.com/page/2/?s=light-->
+        <!--Logo font provided by: http://www.dafont.com/chavelite.font-->
+        <!--endOf-->
     </head>
     <body>
         <!--Banner-->
@@ -23,11 +30,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                         </td>
                         <td  class="td_settings">
                         <?php
-                        if ($_SESSION['loggedin'] == true) {
-                        	echo "<span class='login_status'>Logged in as " . $_SESSION['user'] . ":</span><a href='logout.php' class='cleanLink'>logout</a>";
-                        } else {
                             echo "<a href='login.php' class='cleanLink'>Login</a> / <a href='registration.php' class='cleanLink'>Register</a>";
-                        }
                         ?> 
                      	</td> 
                     </tr>
@@ -60,10 +63,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         <div class="contentContainer">
         <div class="spacerLarge"></div>
         <h1>
-            Tournament Name
+            Logout
         </h1>
         <div class="headingBreak"></div>
+        <p >You were successfully Logged out!  Return to  <a href = "homepage.php">homepage</a></p>
         </div>
     </body>
 </html>
-

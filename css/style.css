@@ -78,7 +78,8 @@
 /*---------------Drop Menus-----------------*/
 .user_settings_drop_menu {
     right: 0px;
-	display-image: src="..\resources\images\tmato.png";
+	/*display-image: src="..\resources\images\tmato.png";*/
+	margin-left:  10px;
 }
 /*-----------------------------------------*/
 .td_settings {
@@ -86,3 +87,6 @@
     text-align: right;
 }
 /*-----------------------------------------*/
+.login_status {
+	margin-right:  20px;
+}

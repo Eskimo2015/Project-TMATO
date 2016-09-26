@@ -31,55 +31,36 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     <body>
         <!--Banner-->
         <div class="nonScroll">
-            <form method="post" action="handlers/login_handler.php">
                 <table class="table_header">
                     <tr>
                         <td><a href = "homepage.php"><img src="resources\images\tmato.png" class="logo"></a></td>
                         <td>
-                        <?php
-							if (!empty($_GET['welcome_msg'])) {
-                                $message = $_GET['welcome_msg'];
-                                echo "<p class='welcome_msg'>$message</p>";
-                            }
-                        ?> 
                         </td>
                         <td class="td_settings">
                         <?php
                         if ($_SESSION['loggedin'] == true) {
-                        	echo "<a href='handlers/logout_handler.php' class='cleanLink'>logout</a>";
+                        	echo "<span class='login_status'>Logged in as " . $_SESSION['user'] . ":</span><a href='logout.php' class='cleanLink'>logout</a> 
+	                        <select name='settings' class='user_settings_drop_menu'>
+							   <option value='one'>One</option>
+							   <option value='two'>Two</option>
+							   <option value='three'>Three</option>
+							   <option value='four'>Four</option>
+							</select> ";
                         } else {
                             echo "<a href='login.php' class='cleanLink'>Login</a> / <a href='registration.php' class='cleanLink'>Register</a>";
                         }
-                        ?> 
-                        <select name="settings" class="user_settings_drop_menu">
-						   <option value="one">One</option>
-						   <option value="two">Two</option>
-						   <option value="three">Three</option>
-						   <option value="four">Four</option>
-						</select> 
+                        ?>
                      	</td> 
                     </tr>
                     <tr>
                     	<td>
                      	</td>
                         <td>
-                            <?php
-							if ($_SESSION['loggedin'] == true) {
-                                echo "<p align='center'>You are currently logged in as " . $_SESSION['user'] . " !</p>"
-                                ;
-                            } else {
-                            if (!empty($_GET['logout_msg'])) {
-                                $message = $_GET['logout_msg'];
-                                echo "<p class='logout_msg'>$message</p>";
-                            }
-                            }
-                            ?>
                         </td>
                         <td>
                      	</td> 
                     </tr>
                 </table>
-            </form>
             <div class="pageBreak"></div>
             <div>
                 <table class="table_nav">
