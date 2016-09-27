@@ -43,9 +43,8 @@ Dislays user account details.
             <div class="div_user">
                 <table class="tbl_user">
                     <?php
-                    
                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-                        $connection = mysqli_connect("localhost:3306", "root", "", "tmato");
+                        include 'handlers/db_conn.php';
                         $result = mysqli_query($connection, "SELECT * FROM user where User_UName LIKE '{$_SESSION["user"]}';");
                         
                         echo"<h1>About</h1><div class='headingBreak'></div>";

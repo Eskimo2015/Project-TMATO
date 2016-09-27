@@ -1,4 +1,5 @@
 	<!DOCTYPE html>
+	<?php include_once 'handlers/login_handler.php'; ?>
 	<html>
         <div class="nonScroll">
                 <table class="table_header">
@@ -8,7 +9,8 @@
                         <td class="td_settings">
                         <?php
                         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-                        	echo "<span class='login_status'>Logged in as " . $_SESSION['user'] . ":</span><a href='handlers/logout_handler.php' class='cleanLink'>logout</a> 
+                        	echo $welcomeMsg;
+                        	echo "<span class='login_status'>logged in as " . $_SESSION['user'] . ":</span><a href='handlers/logout_handler.php' class='cleanLink'>logout</a> 
 	                        <select name='settings' class='user_settings_drop_menu'>
 							   <option value='one'>One</option>
 							   <option value='two'>Two</option>

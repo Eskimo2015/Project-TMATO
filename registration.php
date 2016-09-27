@@ -57,12 +57,7 @@ include 'handlers/registration_handler.php';
                     <tr class="tr1" style="text-align:center"><td class="td1" colspan="3"><input class="btn" type="reset" name="reset" value="Reset" onclick="resetForm()"></td></tr>
                     <tr>
                         <td class="reg_success_msg" colspan="3">
-                            <?php
-                            if (!empty($_GET['reg_success_msg'])) {
-                                $message = $_GET['reg_success_msg'];
-                                echo "<p>$message</p>";
-                            }
-                            ?>
+                            <?php echo $regSuccess; ?>
                         </td>
                     </tr>
                 </table>
@@ -83,7 +78,7 @@ include 'handlers/registration_handler.php';
                         <th class="th_user">Account Created</th> 
                     </tr>
                     <?php
-                    $connection = mysqli_connect("localhost:3306", "root", "", "tmato");
+                    include 'handlers/db_conn.php';
                     $result = mysqli_query($connection, "SELECT * FROM user;");
 
                     while ($output = mysqli_fetch_row($result)) {
