@@ -46,7 +46,7 @@
 .logout_msg {
     color: green;
     margin-left: 10px;
-    text-align: center;
+    /*text-align: center;*/
 }
 .error {
 	color: red;
@@ -92,3 +92,7 @@
 	color: Green;
 	font-weight: bold;
 }
+.spacer{
+	margin-left:  10px;		
+}
+/*-----------------------------------------*/

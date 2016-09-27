@@ -3,6 +3,8 @@ holds the page banner and nav bar for the website to be included into each page.
 -->
 
 <!DOCTYPE html>
+<?php include_once 'handlers/login_handler.php'; ?>
+	<?php include_once 'handlers/login_handler.php'; ?>
 	<html>
         <div class="nonScroll">
                 <table class="table_header">
@@ -10,13 +12,12 @@ holds the page banner and nav bar for the website to be included into each page.
 <<<<<<< HEAD
                         <td rowspan="3"><a href = "index.php"><img src="resources\images\tmato.png" class="logo"></a></td>
 =======
-                        <td rowspan="3"><a href="index.php"><img src="resources\images\tmato.png" class="logo"></a></td>
->>>>>>> branch 'master' of https://github.com/benhook1013/Project_TMATO.git
                         <td></td>
                         <td class="td_settings">
                         <?php
                         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-                        	echo "<span class='login_status'>Logged in as " . $_SESSION['user'] . ":</span><a href='handlers/logout_handler.php' class='cleanLink'>logout</a> 
+                        	echo $welcomeMsg;                        	echo $welcomeMsg;
+                        	echo "<span class='login_status'>logged in as " . $_SESSION['user'] . ":</span><a href='handlers/logout_handler.php' class='cleanLink'>logout</a> 
 	                        <select name='settings' class='user_settings_drop_menu'>
 							   <option value='one'>One</option>
 							   <option value='two'>Two</option>

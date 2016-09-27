@@ -27,9 +27,6 @@
             Logout
         </h1>
         <div class="headingBreak"></div>
-<<<<<<< HEAD
-        <p >You were successfully Logged out!  Return to  <a href = "index.php">homepage</a></p>
-=======
         <p >You were successfully Logged out!  Return to  <a href="index.php">homepage</a></p>
 >>>>>>> branch 'master' of https://github.com/benhook1013/Project_TMATO.git
         </div>

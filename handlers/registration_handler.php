@@ -6,6 +6,13 @@
 //Step 1:  Define variables and set to empty values
 $fname = $lname = $dob = $email = $uname = $pword = "";
 $fnameErr = $lnameErr = $dobErr = $emailErr = $unameErr = $pwordErr = ""; 
+$regSuccess = "";
+
+$nameMatchExp = "/^[a-zA-Z '-]*$/";
+$nameRangeExp = "/^[a-zA-Z '-]{0,32}$/";
+$dobMatchExp = "/^(19|20)[0-9]{2}-((0(1|3|5|7|8)|1(0|2))-(0[1-9]|[1-2][0-9]|3[0-1])|(0(4|6|9)|11)-(0[1-9]|[1-2][0-9]|30)|02-(0[1-9]|1[0-9]|2[0-9]))$/";
+$unameMatchExp = "/^\w{3,16}$/";
+$pwordMatchExp = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d_]{8,16}$/";
 
 //Step 2:  If submission via POST method then validate...
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,9 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   	} else {
   		$fname = test_input($_POST['firstname']);
   		// check if name only contains letters and whitespace
-  		if (!preg_match("/^[a-zA-Z '-]*$/",$fname)) {
+  		if (!preg_match($nameMatchExp,$fname)) {
   			$fnameErr = "Only letters, hyphens(-), apostrophes (') and white space are permitted!";
-  		} else if(!preg_match("/^[a-zA-Z '-]{0,32}$/",$fname)) {
+  			// check if name exceeds 32 characters
+  		} else if(!preg_match($nameRangeExp,$fname)) {
   			$fnameErr = "First Name must NOT exceed 32 characters!";
   		}	
   	}
@@ -25,9 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   	} else {
   		$lname = test_input($_POST['lastname']);
   		// check if name only contains letters and whitespace
-  		if (!preg_match("/^[a-zA-Z '-]*$/",$lname)) {
+  		if (!preg_match($nameMatchExp,$lname)) {
   			$lnameErr = "Only letters, hyphens(-), apostrophes (') and white space are permitted!";
-  		} else if(!preg_match("/^[a-zA-Z '-]{0,32}$/",$lname)) {
+  			// check if name exceeds 32 characters
+  		} else if(!preg_match($nameRangeExp,$lname)) {
   			$lnameErr = "Last Name must NOT exceed 32 characters!";
   		}	
   	}
@@ -36,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   	} else {
   		$dob = test_input($_POST["dob"]);
   		// check if DOB is in correct format yyyy-mm-dd
-  		if (!preg_match("/^(19|20)[0-9]{2}-((0(1|3|5|7|8)|1(0|2))-(0[1-9]|[1-2][0-9]|3[0-1])|(0(4|6|9)|11)-(0[1-9]|[1-2][0-9]|30)|02-(0[1-9]|1[0-9]|2[0-9]))$/",$dob)) {
+  		if (!preg_match($dobMatchExp,$dob)) {
   			$dobErr = "Date must be in correct format YYYY-MM-DD!  Must be between 1900-01-01 and 2099-12-31.  NOTE: *29 days in February!*";
   		}	
   	}
@@ -56,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   	} else {
   		$uname = test_input($_POST["username"]);
   		// check if name only contains letters and whitespace
-  		if (!preg_match("/^\w{3,16}$/",$uname)) {
+  		if (!preg_match($unameMatchExp,$uname)) {
   			$unameErr = "Must contain 3 to 16 characters - Must NOT contain white space or special characters except underscores (_).";
   		} else {
   			$unameErr = userNameCheck($uname);
@@ -67,12 +76,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   	} else {
   		$pword = test_input($_POST["password"]);
   		// check if name only contains letters and whitespace
-  		if (!preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d_]{8,16}$/",$pword)) {
+  		if (!preg_match($pwordMatchExp,$pword)) {
   			$pwordErr = "Must contain 8 to 16 characters - at least ONE Uppercase letter, ONE Lowercase letter and ONE Digit!  Must NOT contain white space or special characters except underscores (_).";
   		}	
   	}
   	if($fnameErr == "" && $lnameErr == "" && $dobErr == "" && $emailErr == "" && $unameErr == "" && $pwordErr == "") {
-  		insertUserData($fname, $lname, $dob, $email, $uname, $pword);
+  		$_POST["firstname"] = $_POST['lastname'] = $_POST["dob"] = $_POST["email"] = $_POST["username"] = $_POST["password"] = "";
+  		$regSuccess = insertUserData($fname, $lname, $dob, $email, $uname, $pword);
   	}
 }
 
@@ -87,8 +97,8 @@ function test_input($data) {
 //Purpose:  Checks for availability of Username
 function userNameCheck($uname) {
 	$data = "";
-	//Step 1:  connect to MySQL and select database in one statement
-	$connection = mysqli_connect("localhost:3306", "root", "", "tmato");
+	//Step 1:  connect to MySQL and select database
+	include 'handlers/db_conn.php';
 	//Step 2:  Run query - check DB for existing account
 	$result = mysqli_query ($connection , "SELECT User_UName FROM user WHERE
 			User_UName LIKE '{$uname}';");
@@ -103,13 +113,15 @@ function userNameCheck($uname) {
 }
 
 function insertUserData($fname, $lname, $dob, $email, $uname, $pword) {
-	//Step 1:  connect to MySQL and select database in one statement
-	$connection = mysqli_connect("localhost:3306", "root", "", "tmato");
+	$data = "";
+	//Step 1:  connect to MySQL and select database
+	include 'handlers/db_conn.php';
 	
 	//Step 2:  Insert user data to User table and print confirmation message
 	mysqli_query($connection, "INSERT INTO user values(NULL,'{$fname}','{$lname}','{$dob}','{$email}',
 	'{$uname}','{$pword}','',CURDATE(),NULL,'0','0')");
-	header("Location: registration.php?reg_success_msg=Your account has been created successfully!");
+	$data = "Your account has been created successfully!";
+	return $data;
 	
 	//Step 3:  Close connection
 	mysqli_close($connection);

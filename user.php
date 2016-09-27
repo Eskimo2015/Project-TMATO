@@ -74,7 +74,7 @@ Dislays user account details.
 					/*DB connect + output of needed fields
 					 * currently teams/orgs and bio are hard coded*/
                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-                        $connection = mysqli_connect("localhost:3306", "root", "", "tmato");
+                        include 'handlers/db_conn.php';
                         $result = mysqli_query($connection, "SELECT * FROM user where User_UName LIKE '{$action}';");
                         
                     
