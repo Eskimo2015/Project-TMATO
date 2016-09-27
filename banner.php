@@ -9,9 +9,7 @@ holds the page banner and nav bar for the website to be included into each page.
         <div class="nonScroll">
                 <table class="table_header">
                     <tr>
-<<<<<<< HEAD
                         <td rowspan="3"><a href = "index.php"><img src="resources\images\tmato.png" class="logo"></a></td>
-=======
                         <td></td>
                         <td class="td_settings">
                         <?php
