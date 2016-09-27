@@ -27,7 +27,7 @@
             Logout
         </h1>
         <div class="headingBreak"></div>
-        <p >You were successfully Logged out!  Return to  <a href="homepage.php">homepage</a></p>
+        <p >You were successfully Logged out!  Return to  <a href="index.php">homepage</a></p>
         </div>
     </body>
 </html>
