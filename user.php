@@ -28,12 +28,27 @@ Dislays user account details.
         <div class="contentContainer">
         <div class="pageBreak"></div>
         <h1>
+        	<!--sets the user page title-->
             <?php
+            /*gets the user being searched from the url*/
+            if (!empty($_GET['action'])) {
+            	$action = $_GET['action'];
+            	$action = basename($action);
+            }
+            /*if there is no user entered default to the logged in user*/
+            else if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+            	$action = $_SESSION['user'];
+            }
+            /*if the user is not logged in display a blank userpage*/
+            else{
+            	$action = "User Page";	
+            }
+            /*display userpage name*/
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-                echo $_SESSION['user'];
+                echo $action;
             } else {
                 $_SESSION['loggedin'] = false;
-                echo "User Name";
+                echo $action;
             }
             ?>  
         </h1>
@@ -43,11 +58,26 @@ Dislays user account details.
             <div class="div_user">
                 <table class="tbl_user">
                     <?php
-                    
+                    /*gets the user being searched from the url*/
+                    if (!empty($_GET['action'])) {
+                    	$action = $_GET['action'];
+                    	$action = basename($action);
+                    }
+                    /*if there is no user entered default to the logged in user*/
+					else if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+		            	$action = $_SESSION['user'];	
+		            }
+		            /*display userpage name throws error without this line*/
+		            else{
+		            	$action = "User Page";	
+		            }
+					/*DB connect + output of needed fields
+					 * currently teams/orgs and bio are hard coded*/
                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                         $connection = mysqli_connect("localhost:3306", "root", "", "tmato");
-                        $result = mysqli_query($connection, "SELECT * FROM user where User_UName LIKE '{$_SESSION["user"]}';");
+                        $result = mysqli_query($connection, "SELECT * FROM user where User_UName LIKE '{$action}';");
                         
+                    
                         echo"<h1>About</h1><div class='headingBreak'></div>";
                         
                         while ($output = mysqli_fetch_row($result)) {
@@ -79,10 +109,12 @@ Dislays user account details.
 									N/A
 								</p>
                             ";
+                            mysqli_close($connection);
                         }
-
-                        mysqli_close($connection);
-                    }
+                        }
+                    else {
+                        echo"No user found";
+					}
                     ?>
                 </table>
             </div>
