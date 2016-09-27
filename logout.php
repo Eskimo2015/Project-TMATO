@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <?php
-session_start();
-session_destroy();
-unset($_SESSION );
 ?>
 <html>
     <head>
@@ -30,7 +27,7 @@ unset($_SESSION );
             Logout
         </h1>
         <div class="headingBreak"></div>
-        <p >You were successfully Logged out!  Return to  <a href = "homepage.php">homepage</a></p>
+        <p >You were successfully Logged out!  Return to  <a href="homepage.php">homepage</a></p>
         </div>
     </body>
 </html>
