@@ -27,10 +27,7 @@
         </h1>
         <div class="headingBreak"></div>
         <p>
-<<<<<<< HEAD
         	<a href="user.php?action=hai">hai</a>
-=======
->>>>>>> branch 'master' of https://github.com/benhook1013/Project_TMATO.git
             Lorem ipsum dolor sit amet, cum ei quas dicit definitionem, agam inani facilisi no eam, nihil dicunt fuisset est in. Mel solet expetenda et, nonumes maluisset reformidans ut duo. Te amet error graecis sea, semper tacimates in ius. His semper facilisis evertitur no, vis fuisset assueverit efficiantur cu.
             Pri legendos adolescens dissentiet ex. Ne eos veniam feugiat deterruisset, eam in fierent evertitur. No est blandit iudicabit, ne vis solet delenit. Eam cu molestiae quaerendum, postea qualisque posidonium duo ei. Ut vel quodsi docendi corrumpit, percipit salutandi ad cum, causae voluptaria eam eu. Te cum facilisi partiendo consetetur.
             Paulo affert indoctum vis no, vel ut paulo docendi. Vel ea docendi recteque, qui singulis recteque abhorreant te, bonorum docendi pri eu. In pro nonumy epicuri molestie. Persequeris vituperatoribus usu ex, no cum vivendo epicurei, vim in nobis vivendum. In cum appetere erroribus ocurreret, errem feugait his an. In vidit movet platonem nam, eos tollit iracundia id. Vide qualisque concludaturque usu id, te usu rebum scripserit signiferumque, vim et legimus debitis efficiantur.
