@@ -3,8 +3,7 @@ holds the page banner and nav bar for the website to be included into each page.
 -->
 
 <!DOCTYPE html>
-<?php include_once 'handlers/login_handler.php'; ?>
-	<?php include_once 'handlers/login_handler.php'; ?>
+<?php //include_once 'handlers/login_handler.php'; ?>
 	<html>
         <div class="nonScroll">
                 <table class="table_header">
