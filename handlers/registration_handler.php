@@ -118,8 +118,8 @@ function insertUserData($fname, $lname, $dob, $email, $uname, $pword) {
 	include 'handlers/db_conn.php';
 	
 	//Step 2:  Insert user data to User table and print confirmation message
-	mysqli_query($connection, "INSERT INTO user values(NULL,'{$fname}','{$lname}','{$dob}','{$email}',
-	'{$uname}','{$pword}','',CURDATE(),NULL,'0','0')");
+	mysqli_query($connection, "INSERT INTO user(User_FName,User_LName,User_UName,User_Password,User_Email,User_DOB,User_Created) 
+		values('{$fname}','{$lname}','{$uname}','{$pword}','{$email}','{$dob}','',CURDATE())");
 	$data = "Your account has been created successfully!";
 	return $data;
 	

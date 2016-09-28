@@ -85,10 +85,10 @@ Dislays user account details.
 									Name: $output[1] $output[2]
 								</p>
 								<p>
-									Date of birth: $output[3]
+									Date of birth: $output[7]
 								</p>
 								<p>
-									Email Address: $output[4]
+									Email Address: $output[6]
 								</p>
 								<p>
 									Account Created: $output[8]
