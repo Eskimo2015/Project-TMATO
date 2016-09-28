@@ -73,7 +73,6 @@ Dislays user account details.
 		            }
 					/*DB connect + output of needed fields
 					 * currently teams/orgs and bio are hard coded*/
-                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                         include 'handlers/db_conn.php';
                         $result = mysqli_query($connection, "SELECT * FROM user where User_UName LIKE '{$action}';");
                         
@@ -111,10 +110,6 @@ Dislays user account details.
                             ";
                             mysqli_close($connection);
                         }
-                        }
-                    else {
-                        echo"No user found";
-					}
                     ?>
                 </table>
             </div>
