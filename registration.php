@@ -71,10 +71,10 @@ include 'handlers/registration_handler.php';
                         <th class="th_user">User ID</th>   
                         <th class="th_user">First Name</th>
                         <th class="th_user">Last Name</th>
-                        <th class="th_user">DOB</th>
-                        <th class="th_user">Email</th>
-                        <th class="th_user">Username</th>
+                        <th class="th_user">User Name</th>
                         <th class="th_user">Password</th>
+                        <th class="th_user">Email</th>
+                        <th class="th_user">DOB</th>
                         <th class="th_user">Account Created</th> 
                     </tr>
                     <?php
@@ -89,8 +89,8 @@ include 'handlers/registration_handler.php';
                                     <td class='td_user'>$output[2]</td>
                                     <td class='td_user'>$output[3]</td>
                                     <td class='td_user'>$output[4]</td>
-                                    <td class='td_user'>$output[5]</td>
                                     <td class='td_user'>$output[6]</td>
+                                    <td class='td_user'>$output[7]</td>
                                     <td class='td_user'>$output[8]</td>
                                 </tr>
                             ";
