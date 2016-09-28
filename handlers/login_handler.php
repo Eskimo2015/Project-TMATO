@@ -8,7 +8,7 @@ $uname = $pword = "";
 $unameErr = $pwordErr = "";
 
 $loginFail = "";
-$welcomeMsg = "";
+//$welcomeMsg = "";
 
 $unameMatchExp = "/^\w{3,16}$/";
 $pwordMatchExp = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d_]{8,16}$/";
@@ -71,15 +71,13 @@ function createSession($urname) {
 	session_start();
 	$_SESSION["loggedin"] = true;
 	$_SESSION["user"] = $urname;
-	$welcomeMsg = "Welcome, you are ";
-	header("Location: user.php");
-// 	header("Location: user.php?welcome_msg=Welcome '" . $urname . "'");
+	header("Location: user.php?welcome_msg=Welcome, you are ");
 }
 
 function loginFail() {
 	return "Your login details were NOT recognised!"
 			. "  Please re-enter your login details...";
 // 	header("Location: login.php?login_fail_msg=Your login details were NOT recognised!"
-// 			. "  Please re-enter your login details...");
+// 			. "  Please re-enter your login details...");  
 }
 ?>

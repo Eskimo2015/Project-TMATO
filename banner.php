@@ -1,9 +1,7 @@
-<!--
-holds the page banner and nav bar for the website to be included into each page. 
--->
-
 <!DOCTYPE html>
-<?php //include_once 'handlers/login_handler.php'; ?>
+<!--
+	Holds the page banner and nav bar for the website to be included into each page. 
+-->
 	<html>
         <div class="nonScroll">
                 <table class="table_header">
@@ -12,6 +10,10 @@ holds the page banner and nav bar for the website to be included into each page.
                         <td></td>
                         <td class="td_settings">
                         <?php
+						if (!empty($_GET['welcome_msg'])) {
+                            $welcome = $_GET['welcome_msg'];
+                            echo "<span class='welcome_msg'>$welcome </span>";
+                        }
                         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                         	//echo $welcomeMsg;
                         	echo "<span class='login_status'>logged in as " . $_SESSION['user'] . ":</span><a href='handlers/logout_handler.php' class='cleanLink'>logout</a> 
