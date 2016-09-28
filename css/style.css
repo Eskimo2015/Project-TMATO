@@ -28,6 +28,10 @@
     text-align: center;
 }
 /*---------------Messages------------------*/
+.conn_err_msg {
+    color: green;
+    text-align: center;
+}
 .reg_success_msg {
     color: green;
     text-align: center;
