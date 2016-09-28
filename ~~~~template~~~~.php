@@ -20,11 +20,11 @@
         <?php include 'banner.php'; ?>
         <!--ContentBody-->
         <div class="contentContainer">
-        <div class="pageBreak"></div>
-        <h1>
-            Heading
-        </h1>
-        <div class="headingBreak"></div>
+      	  <div class="pageBreak"></div>
+      	  <h1>
+     	       Heading
+     	   </h1>
+      	  <div class="headingBreak"></div>
         </div>
     </body>
 </html>
