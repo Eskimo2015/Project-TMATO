@@ -57,7 +57,10 @@ include 'handlers/registration_handler.php';
                     <tr class="tr1" style="text-align:center"><td class="td1" colspan="3"><input class="btn" type="reset" name="reset" value="Reset" onclick="resetForm()"></td></tr>
                     <tr>
                         <td class="reg_success_msg" colspan="3">
-                            <?php echo $regSuccess; ?>
+                            <?php 
+                            	echo $regSuccess;
+								echo $conn_err_msg;
+							?>
                         </td>
                     </tr>
                 </table>
@@ -65,41 +68,47 @@ include 'handlers/registration_handler.php';
         </div>
         <div>
             <br><br>
-            <div class="div_user">
-                <table class="tbl_user">
-                    <tr>
-                        <th class="th_user">User ID</th>   
-                        <th class="th_user">First Name</th>
-                        <th class="th_user">Last Name</th>
-                        <th class="th_user">User Name</th>
-                        <th class="th_user">Password</th>
-                        <th class="th_user">Email</th>
-                        <th class="th_user">DOB</th>
-                        <th class="th_user">Account Created</th> 
-                    </tr>
                     <?php
                     include 'handlers/db_conn.php';
-                    $result = mysqli_query($connection, "SELECT * FROM user;");
+                    if (!$connection) {
+						echo "<p class='conn_err_msg'>No data to display!</p>";
+                    } else {
+			            echo '<div class="div_user">
+			                <table class="tbl_user">
+			                    <tr>
+			                        <th class="th_user">User ID</th>   
+			                        <th class="th_user">First Name</th>
+			                        <th class="th_user">Last Name</th>
+			                        <th class="th_user">User Name</th>
+			                        <th class="th_user">Password</th>
+			                        <th class="th_user">Email</th>
+			                        <th class="th_user">DOB</th>
+			                        <th class="th_user">Account Created</th> 
+			                    </tr>';
+                    
+						$result = mysqli_query($connection, "SELECT * FROM user;");
+						
+	                    while ($output = mysqli_fetch_row($result)) {
+	                        echo"
+	                                <tr>
+	                                    <td class='td_user'>$output[0]</td>
+	                                    <td class='td_user'>$output[1]</td>
+	                                    <td class='td_user'>$output[2]</td>
+	                                    <td class='td_user'>$output[3]</td>
+	                                    <td class='td_user'>$output[4]</td>
+	                                    <td class='td_user'>$output[6]</td>
+	                                    <td class='td_user'>$output[7]</td>
+	                                    <td class='td_user'>$output[8]</td>
+	                                </tr>
+	                            ";
+	                    }
+                    
+                		mysqli_close($connection);
 
-                    while ($output = mysqli_fetch_row($result)) {
-                        echo"
-                                <tr>
-                                    <td class='td_user'>$output[0]</td>
-                                    <td class='td_user'>$output[1]</td>
-                                    <td class='td_user'>$output[2]</td>
-                                    <td class='td_user'>$output[3]</td>
-                                    <td class='td_user'>$output[4]</td>
-                                    <td class='td_user'>$output[6]</td>
-                                    <td class='td_user'>$output[7]</td>
-                                    <td class='td_user'>$output[8]</td>
-                                </tr>
-                            ";
+                		echo "</table>
+                		</div>";
                     }
-
-                    mysqli_close($connection);
                     ?>
-                </table>
-            </div>
         </div>
         </div>
     </body>
