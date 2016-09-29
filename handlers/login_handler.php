@@ -18,7 +18,7 @@ $pwordMatchExp = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d_]{8,16}$/";
 
 //DB Connection Check!  If conection problems exist, print error on page.
 if (mysqli_connect_errno()) {
-	$conn_err_msg = "Unable to connect to database!";
+	$conn_err_msg = "Unable to connect to database!  " . mysqli_connect_error();
     //$conn_err_msg = die('Connect Error: ' . mysqli_connect_error());
 } else {
 	//Step 2:  If submission via POST method then validate...
