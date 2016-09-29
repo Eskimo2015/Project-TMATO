@@ -17,7 +17,7 @@ $unameMatchExp = "/^\w{3,16}$/";
 $pwordMatchExp = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d_]{8,16}$/";
 
 //DB Connection Check!  If conection problems exist, print error on page.
-if (!$connection) {
+if (mysqli_connect_errno()) {
 	$conn_err_msg = "Unable to connect to database!";
     //$conn_err_msg = die('Connect Error: ' . mysqli_connect_error());
 } else {
@@ -26,7 +26,7 @@ if (!$connection) {
 		if (empty($_POST["username"])) {
 			$unameErr = "Username is required!";
 		} else {
-			$uname = test_input($_POST["username"]);
+			$uname = clean_input($_POST["username"]);
 			// check if name only contains letters and whitespace
 			if (!preg_match($unameMatchExp,$uname)) {
 				$unameErr = "Must contain 3 to 16 characters - Must NOT contain white space or special characters except underscores (_).";
@@ -35,7 +35,7 @@ if (!$connection) {
 		if (empty($_POST["password"])) {
 			$pwordErr = "Password is required!";
 		} else {
-			$pword = test_input($_POST["password"]);
+			$pword = clean_input($_POST["password"]);
 			// check if name only contains letters and whitespace
 			if (!preg_match($pwordMatchExp,$pword)) {
 				$pwordErr = "Must contain 8 to 16 characters - at least ONE Uppercase letter, ONE Lowercase letter and ONE Digit!  Must NOT contain white space or special characters except underscores (_).";
@@ -52,7 +52,7 @@ if (!$connection) {
 }
 
 //Trims and cleans input data/strings etc.
-function test_input($data) {
+function clean_input($data) {
 	$data = trim($data);
 	//$data = stripslashes($data);
 	$data = htmlspecialchars($data);
