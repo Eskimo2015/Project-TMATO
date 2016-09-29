@@ -50,6 +50,7 @@ include 'handlers/login_handler.php';
                             <?php 
                             	echo $loginFail;
 								echo $conn_err_msg;
+								//echo mysqli_errno($connection) . ": " . mysqli_error($connection). "\n";
 							?>
                         </td>
                     </tr>
