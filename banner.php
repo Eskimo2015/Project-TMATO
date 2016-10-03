@@ -16,8 +16,8 @@ holds the page banner and nav bar for the website to be included into each page.
                         	//echo $welcomeMsg;
                         	echo "<span class='login_status'>logged in as " . $_SESSION['user'] . ":</span><a href='handlers/logout_handler.php' class='cleanLink'>logout</a> 
 	                        <select name='settings' class='user_settings_drop_menu'>
-							   <option value='one'>One</option>
-							   <option value='two'>Two</option>
+							   <option value='user_settings.php'>UserSettings</option>
+							   <option value='user_settings.php'>Two</option>
 							   <option value='three'>Three</option>
 							   <option value='four'>Four</option>
 							</select> ";
