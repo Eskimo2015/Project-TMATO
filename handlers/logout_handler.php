@@ -6,5 +6,5 @@
 	session_start();
 	session_destroy();
 	unset($_SESSION );
-	header("location: ../index.php?logout_msg=You were successfully Logged out!");
+	header("location: ../logout.php");
 ?>
