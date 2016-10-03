@@ -47,7 +47,11 @@ include 'handlers/login_handler.php';
                     <tr class="tr1" style="text-align:center"><td class="td1" colspan="3"><input class="btn" type="reset" name="reset" value="Reset" onclick="resetForm()"></td></tr>
                     <tr>
                         <td class="login_fail_msg" colspan="3">
-                            <?php echo $loginFail; ?>
+                            <?php 
+                            	echo $loginFail;
+								echo $conn_err_msg;
+								//echo mysqli_errno($connection) . ": " . mysqli_error($connection). "\n";
+							?>
                         </td>
                     </tr>
                 </table>

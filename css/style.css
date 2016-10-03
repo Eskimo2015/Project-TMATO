@@ -28,16 +28,20 @@
     text-align: center;
 }
 /*---------------Messages------------------*/
+.conn_err_msg {
+    color: green;
+    text-align: center;
+}
 .reg_success_msg {
     color: green;
     text-align: center;
 }
 .welcome_msg {
     color: green;
-    font-size: 20pt;
     font-weight: bold;
+    /*font-size: 20pt;
     text-align: center;
-    margin: 10px;
+    margin: 10px;*/
 }
 .login_fail_msg {
     color: green;
