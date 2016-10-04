@@ -14,7 +14,8 @@ $conn_err_msg = "";
 
 $nameMatchExp = "/^[a-zA-Z '-]*$/";
 $nameRangeExp = "/^[a-zA-Z '-]{0,32}$/";
-$dobMatchExp = "/^(19|20)[0-9]{2}-((0(1|3|5|7|8)|1(0|2))-(0[1-9]|[1-2][0-9]|3[0-1])|(0(4|6|9)|11)-(0[1-9]|[1-2][0-9]|30)|02-(0[1-9]|1[0-9]|2[0-9]))$/";
+$dobMatchExp = "/^(19|20)[0-9]{2}-((0(1|3|5|7|8)|1(0|2))-(0[1-9]|[1-2][0-9]|3[0-1])
+	    		|(0(4|6|9)|11)-(0[1-9]|[1-2][0-9]|30)|02-(0[1-9]|1[0-9]|2[0-9]))$/";
 $unameMatchExp = "/^\w{3,16}$/";
 $pwordMatchExp = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d_]{8,16}$/";
 
@@ -55,7 +56,8 @@ if (mysqli_connect_errno()) {
 	  		$dob = clean_input($_POST["dob"]);
 	  		// check if DOB is in correct format yyyy-mm-dd
 	  		if (!preg_match($dobMatchExp,$dob)) {
-	  			$dobErr = "Date must be in correct format YYYY-MM-DD!  Must be between 1900-01-01 and 2099-12-31.  NOTE: *29 days in February!*";
+	  			$dobErr = "Date must be in correct format YYYY-MM-DD!  "
+	  					. "Must be between 1900-01-01 and 2099-12-31.  NOTE: *29 days in February!*";
 	  		}	
 	  	}
 		if (empty($_POST["email"])) {
@@ -86,7 +88,8 @@ if (mysqli_connect_errno()) {
 	  		$pword = clean_input($_POST["password"]);
 	  		// check if name only contains letters and whitespace
 	  		if (!preg_match($pwordMatchExp,$pword)) {
-	  			$pwordErr = "Must contain 8 to 16 characters - at least ONE Uppercase letter, ONE Lowercase letter and ONE Digit!  Must NOT contain white space or special characters except underscores (_).";
+	  			$pwordErr = "Must contain 8 to 16 characters - at least ONE Uppercase letter, "
+	  					. "ONE Lowercase letter and ONE Digit!  Must NOT contain white space or special characters except underscores (_).";
 	  		}	
 	  	}
 	  	if($fnameErr == "" && $lnameErr == "" && $dobErr == "" && $emailErr == "" && $unameErr == "" && $pwordErr == "") {
@@ -129,8 +132,8 @@ function insertUserData($fname, $lname, $dob, $email, $uname, $pword) {
 	include 'handlers/db_conn.php';
 	
 	//Step 2:  Insert user data to User table and print confirmation message
-	if (mysqli_query($connection, "INSERT INTO user(User_FName, User_LName, User_UName, User_Password, User_PwordHash, User_Email, User_DOB,User_Created)
-		values('{$fname}','{$lname}','{$uname}','{$pword}','','{$email}','{$dob}',CURDATE())")) {
+	if (mysqli_query($connection, "INSERT INTO user(User_FName, User_LName, User_UName, User_Password, User_PwordHash, User_Email, 
+			User_DOB,User_Created) values('{$fname}','{$lname}','{$uname}','{$pword}','','{$email}','{$dob}',CURDATE())")) {
 		resetFields();
 		$data = "Your account has been created successfully!";
 	} else {
