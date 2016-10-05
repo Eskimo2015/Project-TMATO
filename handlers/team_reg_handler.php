@@ -88,7 +88,7 @@ function insertUserData($teamName, $teamSport) {
 	include 'handlers/db_conn.php';
 	
 	//Step 2:  Insert user data to User table and print confirmation message
-	if (mysqli_query($connection, "INSERT INTO user(Team_Name, Team_Sport) values('{$teamName}','{$teamSport}')")) {
+	if (mysqli_query($connection, "INSERT INTO team (Team_Name, Team_Sport) values('{$teamName}','{$teamSport}')")) {
 		resetFields();
 		$data = "Your Team has been created successfully!";
 	} else {
