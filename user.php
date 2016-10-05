@@ -82,7 +82,6 @@ Dislays user account details.
 									</p>
 	                            ";
 	                        }
-	                        
 	                        mysqli_close($connection);
                         }
                     ?>
@@ -92,7 +91,6 @@ Dislays user account details.
         </div>
     </body>
 </html>
-
 
 <?php 
 function getAction(){
@@ -108,7 +106,6 @@ function getAction(){
 	}
 	return $action;
 }
-
 
 function getName(){
 	$errMessage = "No user found";
