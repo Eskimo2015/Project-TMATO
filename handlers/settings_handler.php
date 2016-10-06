@@ -6,8 +6,8 @@
 include 'handlers/db_conn.php';
 
 //Step 1:  Define variables and set to empty values
-$fname = $lname = $dob = $email = $uname = $pword = "";
-$fnameErr = $lnameErr = $dobErr = $emailErr = $unameErr = $pwordErr = ""; 
+$fname = $lname = $dob = $email = $uname = $pword = $bio = "";
+$fnameErr = $lnameErr = $dobErr = $emailErr = $unameErr = $pwordErr = $bioErr = ""; 
 
 $regSuccess = "";
 $conn_err_msg = "";
@@ -17,6 +17,8 @@ $nameRangeExp = "/^[a-zA-Z '-]{0,32}$/";
 $dobMatchExp = "/^(19|20)[0-9]{2}-((0(1|3|5|7|8)|1(0|2))-(0[1-9]|[1-2][0-9]|3[0-1])|(0(4|6|9)|11)-(0[1-9]|[1-2][0-9]|30)|02-(0[1-9]|1[0-9]|2[0-9]))$/";
 $unameMatchExp = "/^\w{3,16}$/";
 $pwordMatchExp = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d_]{8,16}$/";
+
+$userID = getUserID();
 
 //DB Connection Check!  If conection problems exist, print error on page.
 if (mysqli_connect_errno()) {
@@ -69,17 +71,6 @@ if (mysqli_connect_errno()) {
 	  			$emailErr = "Invalid email format!  Must be well formed e.g. contain only ONE '@' and end in '.com' etc.";
 	  		}
 	  	}
-		if (empty($_POST["username"])) {
-	    	$unameErr = "Username is required!";
-	  	} else {
-	  		$uname = clean_input($_POST["username"]);
-	  		// check if name only contains letters and whitespace
-	  		if (!preg_match($unameMatchExp,$uname)) {
-	  			$unameErr = "Must contain 3 to 16 characters - Must NOT contain white space or special characters except underscores (_).";
-	  		} else {
-	  			$unameErr = userNameCheck($uname);
-	  		}
-	  	}
 		if (empty($_POST["password"])) {
 	    	$pwordErr = "Password is required!";
 	  	} else {
@@ -89,8 +80,12 @@ if (mysqli_connect_errno()) {
 	  			$pwordErr = "Must contain 8 to 16 characters - at least ONE Uppercase letter, ONE Lowercase letter and ONE Digit!  Must NOT contain white space or special characters except underscores (_).";
 	  		}	
 	  	}
-	  	if($fnameErr == "" && $lnameErr == "" && $dobErr == "" && $emailErr == "" && $unameErr == "" && $pwordErr == "") {
-	  		$regSuccess = insertUserData($fname, $lname, $dob, $email, $uname, $pword);
+		
+	  	//no checks for bio yet
+	  	$bio = clean_input($_POST["bio"]);
+	  	
+	  	if($fnameErr == "" && $lnameErr == "" && $dobErr == "" && $emailErr == "" && $pwordErr == "" && $bioErr =="") {
+	  		$regSuccess = insertUserData($fname, $lname, $dob, $email, $pword, $bio);
 	  	}
 	}
 }
@@ -98,7 +93,6 @@ if (mysqli_connect_errno()) {
 //Trims and cleans input data/strings etc.
 function clean_input($data) {
 	$data = trim($data);
-	//$data = stripslashes($data);
 	$data = htmlspecialchars($data);
 	return $data;
 }
@@ -123,17 +117,23 @@ function userNameCheck($uname) {
 	mysqli_close($connection);
 }
 
-function insertUserData($fname, $lname, $dob, $email, $uname, $pword) {
+function insertUserData($fname, $lname, $dob, $email, $pword, $bio) {
 	$data = "";
+	$userID = getUserID();
 	//Step 1:  connect to MySQL and select database
 	include 'handlers/db_conn.php';
-	
-	//Step 2:  Insert user data to User table and print confirmation message
-	if (mysqli_query($connection, "UPDATE user(User_FName, User_LName, User_UName, User_Password, User_PwordHash, User_Email, User_DOB,User_Created)
-		values('{$fname}','{$lname}','{$uname}','{$pword}','','{$email}','{$dob}',CURDATE()) WHERE $uname = uname")) {
+
+	//Step 2:  Update user data to User table and print confirmation message
+	if (mysqli_query($connection, "UPDATE user
+			SET User_FName = '$fname', User_LName = '$lname', User_Password = '$pword',
+			User_Email = '$email', User_DOB = '$dob', User_Bio = '$bio'
+			WHERE User_ID = $userID;
+			")){
 		resetFields();
-		$data = "Your account has been created successfully!";
-	} else {
+		$data = "Your account has been Updated!";
+	} 
+	else 
+	{
 		$data = "There was an issue storing your details!  " . mysqli_error($connection);
 	}
 	return $data;
@@ -142,6 +142,19 @@ function insertUserData($fname, $lname, $dob, $email, $uname, $pword) {
 	mysqli_close($connection);
 }
 function resetFields(){
-	$_POST["firstname"] = $_POST['lastname'] = $_POST["dob"] = $_POST["email"] = $_POST["username"] = $_POST["password"] = "";
+	$_POST["firstname"] = $_POST["lastname"] = $_POST["dob"] = $_POST["email"] = $_POST["password"] = $_POST["bio"] = null;
+}
+
+function getUserID(){
+	include "db_conn.php";
+	
+	if (!$connection) {
+		echo "<p class='conn_err_msg'>Unable to connect to database!  No data to display.<p>";
+	} else {
+		$result = mysqli_query($connection, "SELECT User_ID FROM user where User_UName LIKE '{$_SESSION['user']}';");
+	}
+	while ($data = mysqli_fetch_row($result)){
+		return $data[0];
+	}
 }
 ?>

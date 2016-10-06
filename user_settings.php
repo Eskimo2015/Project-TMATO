@@ -30,8 +30,11 @@ include 'handlers/settings_handler.php';
 		        if (!$connection) {
 		        	echo "<p class='conn_err_msg'>Unable to connect to database!  No data to display.<p>";
 		        	//$conn_err_msg = die('Connect Error: ' . mysqli_connect_error());
-		        } else {
+		        } else if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 		        	$result = mysqli_query($connection, "SELECT * FROM user where User_UName LIKE '{$_SESSION['user']}';");
+		        }
+		        else{
+		        	echo "No active user";
 		        }
 	        ?>
 	        <div class="setBodyMargin">
@@ -45,16 +48,24 @@ include 'handlers/settings_handler.php';
 	                    	<td><span class="error">* <?php echo $dobErr;?></span></td></tr>
 	                    <tr><td class="td1">Email Address:</td><td></td><td><input class="input_reg_form" type="text" placeholder=<?php echo getCurrData("6", $connection); ?> name="email" value="<?PHP if(isset($_POST['email'])) echo htmlspecialchars($_POST['email']); ?>"></td>
 	                    	<td><span class="error">* <?php echo $emailErr;?></span></td></tr>
+	                    <tr><td class="td1">Bio:</td><td></td><td><input class="input_reg_form" type="text" placeholder=<?php echo getCurrData("9", $connection); ?> name="bio" value="<?PHP if(isset($_POST['bio'])) echo htmlspecialchars($_POST['bio']); ?>"></td>
+	                    	<td><span class="error">* <?php echo $bioErr;?></span></td></tr>
 	                    <tr><td class="td1" colspan="3"></td></tr>
 	                    <tr><td class="td1" colspan="3"></td></tr>
-	                    <tr><td class="td1">Username:</td><td></td><td><input class="input_reg_form" type="text" placeholder="User" name="username" value="<?PHP if(isset($_POST['username'])) echo htmlspecialchars($_POST['username']); ?>"></td>
-	                    	<td><span class="error">* <?php echo $unameErr;?></span></td></tr>
 	                    <tr><td class="td1">Password:</td><td></td><td><input class="input_reg_form" type="password" placeholder="GuessWhat123" name="password" value="<?PHP if(isset($_POST['password'])) echo htmlspecialchars($_POST['password']); ?>"></td>
 	                    	<td><span class="error">* <?php echo $pwordErr;?></span></td></tr>
 	                    <tr><td class="td1" colspan="3"></td></tr>
 	                    <tr><td class="td1" colspan="3"></td></tr>
-	                    <tr class="tr1" style="text-align:center"><td class="td1" colspan="3"><input class="btn" type="submit" name="submit" value="Register"></td></tr>
+	                    <?php 
+	                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+	                    echo'
+	                    <tr class="tr1" style="text-align:center"><td class="td1" colspan="3"><input class="btn" type="submit" name="submit" value="Submit"></td></tr>
 	                    <tr class="tr1" style="text-align:center"><td class="td1" colspan="3"><input class="btn" type="reset" name="reset" value="Reset" onclick="resetForm()"></td></tr>
+	                    ';
+	                    }
+	                    else{
+	                    	echo "No valid logon";
+	                    }?>
 	                    <tr>
 	                        <td class="reg_success_msg" colspan="3">
 	                            <?php 
@@ -73,15 +84,36 @@ include 'handlers/settings_handler.php';
 <?php 
 function getCurrData($field, $connection)
 {	
-
+	$fieldData = NULL;
 	if (!$connection) {
 		return "Err";
-	} else {
+	} else if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 		$result = mysqli_query($connection, "SELECT * FROM user where User_UName LIKE '{$_SESSION['user']}';");
 		 
 		while ($output = mysqli_fetch_row($result)) {
-			return $output[$field];
+			$fieldData = $output[$field];
 		}
+	}
+	if ($fieldData) {
+		return $fieldData;
+	}
+	else {
+		if ($field == '1'){
+			return "FirstName";
+		}
+		else if($field == '2'){
+			return "LastName";
+		}
+		else if($field == '7'){
+			Return "DOB";
+		}
+		else if($field == '6'){
+			return "email";
+		}
+		else if($field == '9'){
+			return "Bio";
+		}
+		else return "Err";
 	}
 }
 
@@ -90,12 +122,14 @@ function getName(){
 
 	if (!$connection) {
 		echo "<p class='conn_err_msg'>Unable to connect to database!  No data to display.<p>";
-	} else {
+	} 
+	else if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 		$result = mysqli_query($connection, "SELECT User_UName FROM user where User_UName LIKE '{$_SESSION['user']}';");
-	}
 
-	while ($data = mysqli_fetch_row($result)){
-		return $data[0];
+		while ($data = mysqli_fetch_row($result)){
+			return $data[0];
+		}
 	}
+	else echo "Err no logon";
 }
 ?>
