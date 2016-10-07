@@ -5,11 +5,11 @@ include 'session.php';
 include 'handlers/settings_handler.php';
 ?>
 	<head>
-    	<title>
+<title>
         <?php
-			if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-				echo 'My Account settings';
-			}
+		if (isset ( $_SESSION ['loggedin'] ) && $_SESSION ['loggedin'] == true) {
+			echo 'My Account settings';
+		}
 		?>
 		</title>
         <meta charset="UTF-8">
@@ -125,7 +125,6 @@ function getName(){
 	} 
 	else if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 		$result = mysqli_query($connection, "SELECT User_UName FROM user where User_UName LIKE '{$_SESSION['user']}';");
-
 		while ($data = mysqli_fetch_row($result)){
 			return $data[0];
 		}

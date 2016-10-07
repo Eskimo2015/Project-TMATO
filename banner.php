@@ -17,9 +17,9 @@
                         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                         	//echo $welcomeMsg;
                         	echo "<span class='login_status'>logged in as " . $_SESSION['user'] . ":</span><a href='handlers/logout_handler.php' class='cleanLink'>logout</a> 
-	                        <select name='settings' class='user_settings_drop_menu'>
-							   <option value='user_settings.php'>UserSettings</option>
-							   <option value='user_settings.php'>Two</option>
+	                        <select name='settings' class='user_settings_drop_menu' onchange='location = this.value;'>
+							   <option value='user_settings.php'>User Settings</option>
+							   <option value='team_registration.php'>Add Team</option>
 							   <option value='three'>Three</option>
 							   <option value='four'>Four</option>
 							</select> ";
