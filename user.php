@@ -67,7 +67,11 @@ Dislays user account details.
 										Account Created: $output[8]
 									</p>
 									<p>
-										Bio: N/A
+										Bio: "; if ($output[9] ==null){
+													echo "N/A";
+	                            				}
+	                            				else echo $output[9];
+	                            	echo "			
 									</p>
 									
 									<div class='spacerSmall'></div>
@@ -82,7 +86,6 @@ Dislays user account details.
 									</p>
 	                            ";
 	                        }
-	                        
 	                        mysqli_close($connection);
                         }
                     ?>
@@ -92,7 +95,6 @@ Dislays user account details.
         </div>
     </body>
 </html>
-
 
 <?php 
 function getAction(){
@@ -108,7 +110,6 @@ function getAction(){
 	}
 	return $action;
 }
-
 
 function getName(){
 	$errMessage = "No user found";
