@@ -13,9 +13,65 @@
         <div class="contentContainer">
         <div class="pageBreak"></div>
         <h1>
-            Team Name
+            <?php echo getName() ?>
         </h1>
         <div class="headingBreak"></div>
+        
+        <?php
+				/*DB connect + output of needed fields
+				* currently teams/orgs and bio are hard coded*/
+                include 'handlers/db_conn.php';
+                if (!$connection) {
+                	echo "<p class='conn_err_msg'>Unable to connect to database!  No data to display.<p>";
+                    } else {
+                    $search = getAction();
+	                $result = mysqli_query($connection, "SELECT * FROM team where Team_Name LIKE '{$search}';");
+                    }
+	                        
+	                while ($output = mysqli_fetch_row($result)) {
+	                	echo "
+                		<h1>Bio</h1><div class='headingBreak'></div>
+                			$output[4]
+                		<h1>Members</h1><div class='headingBreak'></div>
+                			<p>
+	                			PlaceHolderIcon - N/A
+	                		</p>";
+                    }
+        ?>
         </div>
     </body>
 </html>
+
+<?php 
+function getAction(){
+	if (!empty($_GET['action'])) {
+		$action = $_GET['action'];
+		$action = basename($action);
+	}
+	else{
+		$action = "";
+	}
+	return $action;
+}
+
+function getName(){
+	$errMessage = "No team found";
+	include 'handlers/db_conn.php';
+	$action = getAction();
+	
+	if (!$connection) {
+		echo "<p class='conn_err_msg'>Unable to connect to database!  No data to display.<p>";
+	} else {
+		$result = mysqli_query($connection, "SELECT Team_Name FROM team where Team_Name LIKE '{$action}';");
+	}
+	
+	if($action == null){
+		return $errMessage;
+	}
+	else{
+		while ($data = mysqli_fetch_row($result)){
+			return $data[0];
+		}
+	}
+}
+?>

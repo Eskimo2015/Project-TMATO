@@ -37,59 +37,53 @@ Dislays user account details.
         <div>
             <br><br>
             <div class="div_user">
-                <table class="tbl_user">
-                    <?php
-					/*DB connect + output of needed fields
-					 * currently teams/orgs and bio are hard coded*/
-                        include 'handlers/db_conn.php';
-                        
-                        if (!$connection) {
-                        	echo "<p class='conn_err_msg'>Unable to connect to database!  No data to display.<p>";
-                        	//$conn_err_msg = die('Connect Error: ' . mysqli_connect_error());
-                        } else {
-                        	$search = getAction();
-	                        $result = mysqli_query($connection, "SELECT * FROM user where User_UName LIKE '{$search}';");
-	                    
-	                        echo"<h1>About</h1><div class='headingBreak'></div>";
+            	<?php
+				/*DB connect + output of needed fields
+				* currently teams/orgs and bio are hard coded*/
+                include 'handlers/db_conn.php';
+                if (!$connection) {
+                	echo "<p class='conn_err_msg'>Unable to connect to database!  No data to display.<p>";
+                    } else {
+                    $search = getAction();
+	                $result = mysqli_query($connection, "SELECT * FROM user where User_UName LIKE '{$search}';");
+	                
+	                echo"<h1>About</h1><div class='headingBreak'></div>";
 	                        
-	                        while ($output = mysqli_fetch_row($result)) {
-	                            echo"
-									<p>
-										Name: $output[1] $output[2]
-									</p>
-									<p>
-										Date of birth: $output[7]
-									</p>
-									<p>
-										Email Address: $output[6]
-									</p>
-									<p>
-										Account Created: $output[8]
-									</p>
-									<p>
-										Bio: "; if ($output[9] ==null){
-													echo "N/A";
-	                            				}
-	                            				else echo $output[9];
-	                            	echo "			
-									</p>
+	                while ($output = mysqli_fetch_row($result)) {
+	                	echo"
+							<p>
+								Name: $output[1] $output[2]
+							</p>
+							<p>
+								Date of birth: $output[7]
+							</p>
+							<p>
+								Email Address: $output[6]
+							</p>
+							<p>
+								Account Created: $output[8]
+							</p>
+							<p>
+								Bio: "; if ($output[9] ==null){
+									echo "N/A";
+                            	}
+                            	else echo $output[9];
+                            echo "			
+							</p>		
+								<div class='spacerSmall'></div>
+							<h1>Teams</h1><div class='headingBreak'></div>
+							<p>
+								N/A
+							</p>
 									
-									<div class='spacerSmall'></div>
-									<h1>Teams</h1><div class='headingBreak'></div>
-									<p>
-										N/A
-									</p>
-									
-									<h1>Organisations</h1><div class='headingBreak'></div>
-									<p>
-										N/A
-									</p>
-	                            ";
+							<h1>Organisations</h1><div class='headingBreak'></div>
+								<p>
+									N/A
+								</p> ";
 	                        }
 	                        mysqli_close($connection);
                         }
                     ?>
-                </table>
             </div>
         </div>
         </div>
