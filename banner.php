@@ -18,6 +18,7 @@
                         	//echo $welcomeMsg;
                         	echo "<span class='login_status'>logged in as " . $_SESSION['user'] . ":</span><a href='handlers/logout_handler.php' class='cleanLink'>logout</a> 
 	                        <select name='settings' class='user_settings_drop_menu' onchange='location = this.value;'>
+                        		<option value=''>Settings</option>
 							   <option value='user_settings.php'>User Settings</option>
 							   <option value='team_registration.php'>Add Team</option>
 							   <option value='three'>Three</option>
@@ -43,7 +44,7 @@
                 <table class="table_nav">
                     <tr class="banner">
                         <td><a href ="user.php">User</a></td>
-                        <td><a href ="team.php">Team</a></td>
+                        <td><a href ="team_navigation.php">Team</a></td>
                         <td><a href ="tournament.php">Tournament</a></td>
                         <td><a href ="organisation.php">Organisation</a></td>
                         <!---<td class="hideElement"></td>-->
