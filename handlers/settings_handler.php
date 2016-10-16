@@ -17,6 +17,8 @@ $nameRangeExp = "/^[a-zA-Z '-]{0,32}$/";
 $dobMatchExp = "/^(19|20)[0-9]{2}-((0(1|3|5|7|8)|1(0|2))-(0[1-9]|[1-2][0-9]|3[0-1])|(0(4|6|9)|11)-(0[1-9]|[1-2][0-9]|30)|02-(0[1-9]|1[0-9]|2[0-9]))$/";
 $unameMatchExp = "/^\w{3,16}$/";
 $pwordMatchExp = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d_]{8,16}$/";
+$bioMatchExp = "/^[a-zA-Z0-9 '-()]*$/";
+$bioRangeExp = "/^[a-zA-Z0-9 '-()]{0,500}$/";
 
 $userID = getUserID();
 
@@ -28,9 +30,9 @@ if (mysqli_connect_errno()) {
 	//Step 2:  If submission via POST method then validate...
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if (empty($_POST["firstname"])) {
-	    	$fnameErr = "First Name is required!";
-	  	} else {
-	  		$fname = clean_input($_POST['firstname']);
+	    	$fnameErr = "";
+	    } else {
+			$fname = clean_input($_POST['firstname']);
 	  		// check if name only contains letters and whitespace
 	  		if (!preg_match($nameMatchExp,$fname)) {
 	  			$fnameErr = "Only letters, hyphens(-), apostrophes (') and white space are permitted!";
@@ -38,11 +40,11 @@ if (mysqli_connect_errno()) {
 	  		} else if(!preg_match($nameRangeExp,$fname)) {
 	  			$fnameErr = "First Name must NOT exceed 32 characters!";
 	  		}	
-	  	}
+	    }
 		if (empty($_POST["lastname"])) {
-	    	$lnameErr = "Last Name is required!";
-	  	} else {
-	  		$lname = clean_input($_POST['lastname']);
+	    	$lnameErr = "";
+	    } else {
+			$lname = clean_input($_POST['lastname']);
 	  		// check if name only contains letters and whitespace
 	  		if (!preg_match($nameMatchExp,$lname)) {
 	  			$lnameErr = "Only letters, hyphens(-), apostrophes (') and white space are permitted!";
@@ -50,39 +52,48 @@ if (mysqli_connect_errno()) {
 	  		} else if(!preg_match($nameRangeExp,$lname)) {
 	  			$lnameErr = "Last Name must NOT exceed 32 characters!";
 	  		}	
-	  	}
+	    }
 		if (empty($_POST["dob"])) {
-	    	$dobErr = "DOB is required!";
-	  	} else {
-	  		$dob = clean_input($_POST["dob"]);
+	    	$dobErr = "";
+	    } else {
+			$dob = clean_input($_POST["dob"]);
 	  		// check if DOB is in correct format yyyy-mm-dd
 	  		if (!preg_match($dobMatchExp,$dob)) {
 	  			$dobErr = "Date must be in correct format YYYY-MM-DD!  Must be between 1900-01-01 and 2099-12-31.  NOTE: *29 days in February!*";
 	  		}	
-	  	}
-		if (empty($_POST["email"])) {
-	    	$emailErr = "Email is required!";
-	  	} else {
-	  		$email = clean_input($_POST["email"]);
+	    }
+	  	if (empty($_POST["email"])) {
+	    	$emailErr = "";
+	    } else {
+			$email = clean_input($_POST["email"]);
 	  		//Remove all illegal characters except a-zA-Z0-9!#$%&'*+-/=?^_`{|}~@.[]
 	  		$email = filter_var($email, FILTER_SANITIZE_EMAIL);
 	  		// check if e-mail address is well-formed
 	  		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 	  			$emailErr = "Invalid email format!  Must be well formed e.g. contain only ONE '@' and end in '.com' etc.";
 	  		}
-	  	}
-		if (empty($_POST["password"])) {
-	    	$pwordErr = "Password is required!";
-	  	} else {
-	  		$pword = clean_input($_POST["password"]);
+	    }
+	  	if (empty($_POST["password"])) {
+	    	$pwordErr = "";
+	    } else {
+			$pword = clean_input($_POST["password"]);
 	  		// check if name only contains letters and whitespace
 	  		if (!preg_match($pwordMatchExp,$pword)) {
 	  			$pwordErr = "Must contain 8 to 16 characters - at least ONE Uppercase letter, ONE Lowercase letter and ONE Digit!  Must NOT contain white space or special characters except underscores (_).";
-	  		}	
-	  	}
-		
-	  	//no checks for bio yet
-	  	$bio = clean_input($_POST["bio"]);
+	  		}
+	    }
+	  	if (empty($_POST["bio"])) {
+	    	$bioErr = "";
+	    } else {
+			$bio = clean_input($_POST["bio"]);
+		  	//check for valid characters
+	  		if (!preg_match($bioMatchExp,$bio)) {
+	  			$bioErr = "Only letters, hyphens(-), apostrophes ('), brackets (()) and white space are permitted!";
+	  			// check if name exceeds 500 characters
+	  		} else if(!preg_match($bioRangeExp,$bio)) {
+	  			$bioErr = "Bio must NOT exceed 500 characters!";
+	  		}
+	    }
 	  	
 	  	if($fnameErr == "" && $lnameErr == "" && $dobErr == "" && $emailErr == "" && $pwordErr == "" && $bioErr =="") {
 	  		$regSuccess = insertUserData($fname, $lname, $dob, $email, $pword, $bio);
@@ -124,18 +135,43 @@ function insertUserData($fname, $lname, $dob, $email, $pword, $bio) {
 	include 'handlers/db_conn.php';
 
 	//Step 2:  Update user data to User table and print confirmation message
-	if (mysqli_query($connection, "UPDATE user
-			SET User_FName = '$fname', User_LName = '$lname', User_Password = '$pword',
-			User_Email = '$email', User_DOB = '$dob', User_Bio = '$bio'
-			WHERE User_ID = $userID;
-			")){
+	if (!$connection) {
+		$data = "There was an issue storing your details!  " . mysqli_error($connection);
+	} else {
+		if (!empty($fname)) {
+			mysqli_query($connection, "UPDATE user SET User_FName = '$fname' WHERE User_ID = $userID;");
+		} else {
+			$fnameErr = "NO CHANGES WERE MADE!"; //Feature does not currently work!
+		}
+		if (!empty($lname)) {
+			mysqli_query($connection, "UPDATE user SET User_LName = '$lname' WHERE User_ID = $userID;");
+		} else {
+			$lnameErr = "NO CHANGES WERE MADE!"; //Feature does not currently work!
+		}
+		if (!empty($dob)) {
+			mysqli_query($connection, "UPDATE user SET User_DOB = '$dob' WHERE User_ID = $userID;");
+		} else {
+			$dobErr = "NO CHANGES WERE MADE!"; //Feature does not currently work!
+		}
+		if (!empty($email)) {
+			mysqli_query($connection, "UPDATE user SET User_Email = '$email' WHERE User_ID = $userID;");
+		} else {
+			$emailErr = "NO CHANGES WERE MADE!"; //Feature does not currently work!
+		}
+		if (!empty($pword)) {
+			mysqli_query($connection, "UPDATE user SET User_Password = '$pword' WHERE User_ID = $userID;");
+		} else {
+			$pwordErr = "NO CHANGES WERE MADE!"; //Feature does not currently work!
+		}
+		if (!empty($bio)) {
+			mysqli_query($connection, "UPDATE user SET User_Bio = '$bio' WHERE User_ID = $userID;");
+		} else {
+			$bioErr = "NO CHANGES WERE MADE!"; //Feature does not currently work!
+		}
 		resetFields();
 		$data = "Your account has been Updated!";
 	} 
-	else 
-	{
-		$data = "There was an issue storing your details!  " . mysqli_error($connection);
-	}
+
 	return $data;
 	
 	//Step 3:  Close connection

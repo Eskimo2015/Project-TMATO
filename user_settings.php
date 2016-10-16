@@ -42,7 +42,7 @@ include 'handlers/settings_handler.php';
 	                <table class="tb1">
 	                    <tr><td class="td1">First Name:</td><td></td><td><input class="input_reg_form" type="text" placeholder=<?php echo getCurrData("1", $connection); ?> name="firstname" value="<?PHP if(isset($_POST['firstname'])) echo htmlspecialchars($_POST['firstname']); ?>"></td>
 	                    	<td><span class="error">* <?php echo $fnameErr;?></span></td></tr>
-	                    <tr><td class="td1">Last Name:</td><td></td><td><input class="input_reg_form" type="text" placeholder=<?php echo getCurrData("2", $connection); ?> name="lastname"; value="<?PHP if(isset($_POST['lastname'])) echo htmlspecialchars($_POST['lastname']); ?>"></td>
+	                    <tr><td class="td1">Last Name:</td><td></td><td><input class="input_reg_form" type="text" placeholder=<?php echo getCurrData("2", $connection); ?> name="lastname" value="<?PHP if(isset($_POST['lastname'])) echo htmlspecialchars($_POST['lastname']); ?>"></td>
 	                    	<td><span class="error">* <?php echo $lnameErr;?></span></td></tr>
 	                    <tr><td class="td1">Date Of Birth:</td><td></td><td><input class="input_reg_form" type="text" placeholder=<?php echo getCurrData("7", $connection); ?> name="dob" value="<?PHP if(isset($_POST['dob'])) echo htmlspecialchars($_POST['dob']); ?>"></td>
 	                    	<td><span class="error">* <?php echo $dobErr;?></span></td></tr>
