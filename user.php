@@ -50,6 +50,9 @@ Dislays user account details.
 	                echo"<h1>About</h1><div class='headingBreak'></div>";
 	                        
 	                while ($output = mysqli_fetch_row($result)) {
+	                	echo "<p>";
+	                	echo "uID: " . $_SESSION["uID"] . $_SESSION["user"];
+	                	echo"</p>";
 	                	echo"
 							<p>
 								Name: $output[1] $output[2]
@@ -80,8 +83,9 @@ Dislays user account details.
 								<p>
 									N/A
 								</p> ";
-	                        }
+	                        } 
 	                        mysqli_close($connection);
+	                        
                         }
                     ?>
             </div>
@@ -112,11 +116,9 @@ function getName(){
 	
 	if (!$connection) {
 		echo "<p class='conn_err_msg'>Unable to connect to database!  No data to display.<p>";
-		//$conn_err_msg = die('Connect Error: ' . mysqli_connect_error());
 	} else {
-		$result = mysqli_query($connection, "SELECT User_UName FROM user where User_UName LIKE '{$action}';");
+		$result = mysqli_query($connection, "SELECT User_UName FROM user WHERE User_UName LIKE '{$action}';");
 	}
-	
 	if($action == null){
 		return $errMessage;
 	}

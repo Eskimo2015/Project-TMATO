@@ -35,7 +35,9 @@
                 		<h1>Members</h1><div class='headingBreak'></div>
                 			<p>
 	                			PlaceHolderIcon - N/A
-	                		</p>";
+	                			";
+	                	echo getmembers();
+                    		echo"</p>";
                     }
         ?>
         </div>
@@ -72,6 +74,28 @@ function getName(){
 		while ($data = mysqli_fetch_row($result)){
 			return $data[0];
 		}
+	}
+}
+
+function getMembers(){
+	include "handlers/db_conn.php";
+	$teamID = getTeamID(); 
+	
+	$members = mysqli_query($connection, "SELECT User_ID FROM t_member_of WHERE Team_ID ='{$teamID}';");
+	 
+	while ($output = mysqli_fetch_row($members)) {
+		echo"
+		<h1>$Output[0]</h1>";
+	}
+}
+
+function getTeamID(){
+	include "handlers/db_conn.php";
+	$action = getAction();
+	
+	$members = mysqli_query($connection, "SELECT Team_ID FROM team WHERE Team_Name ='{$action}';");
+	while($output = mysqli_fetch_row($members)){
+		return $output[0];
 	}
 }
 ?>

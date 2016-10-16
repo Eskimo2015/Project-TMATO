@@ -80,6 +80,7 @@ function createSession($urname) {
 	session_start();
 	$_SESSION["loggedin"] = true;
 	$_SESSION["user"] = $urname;
+	$_SESSION["uID"] = getID($urname);
 	header("Location: user.php?welcome_msg=Welcome, you are ");
 }
 
@@ -88,5 +89,17 @@ function loginFail() {
 			. "  Please re-enter your login details...";
 // 	header("Location: login.php?login_fail_msg=Your login details were NOT recognised!"
 // 			. "  Please re-enter your login details...");  
+}
+
+function getID($uname){
+	include "handlers/db_conn.php";
+	if (!$connection) {
+		return "<p class='conn_err_msg'>Unable to connect to database!  No data to display.<p>";
+	} else {
+		$result = mysqli_query($connection, "SELECT User_ID FROM user where User_UName LIKE '{$uname}';");
+	}
+	while ($data = mysqli_fetch_row($result)){
+		return $data[0];
+	}
 }
 ?>
