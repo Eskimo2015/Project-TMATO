@@ -12,8 +12,8 @@ $teamNameErr = $teamSportErr = "";
 $regSuccess = "";
 $conn_err_msg = "";
 
-$nameMatchExp = "/^[a-zA-Z '-]*$/";
-$nameRangeExp = "/^[a-zA-Z '-]{0,32}$/";
+$nameMatchExp = "/^[a-zA-Z0-9-_ ]*$/";
+$nameRangeExp = "/^[a-zA-Z0-9'- ]{0,32}$/";
 
 echo "gsjoizgsreiokh;gsrhnijogsr";
 
@@ -30,7 +30,7 @@ if (mysqli_connect_errno()) {
 	  		$teamName = clean_input($_POST['team_name']);
 	  		// check if Team Name only contains letters and whitespace
 	  		if (!preg_match($nameMatchExp,$teamName)) {
-	  			$teamNameErr = "Only letters, hyphens(-), apostrophes (') and white space are permitted!";
+	  			$teamNameErr = "Only upper and lower case letters (A-Z a-z), digits (0-9), hyphens (-), underscores (_) and Whitespace are permitted!";
 	  			// check if Team Name exceeds 32 characters
 	  		} else if(!preg_match($nameRangeExp,$teamName)) {
 	  			$teamNameErr = "Team Name must NOT exceed 32 characters!";
