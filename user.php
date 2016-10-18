@@ -50,9 +50,6 @@ Dislays user account details.
 	                echo"<h1>About</h1><div class='headingBreak'></div>";
 	                        
 	                while ($output = mysqli_fetch_row($result)) {
-	                	echo "<p>";
-	                	echo "uID: " . $_SESSION["uID"] . $_SESSION["user"];
-	                	echo"</p>";
 	                	echo"
 							<p>
 								Name: $output[1] $output[2]

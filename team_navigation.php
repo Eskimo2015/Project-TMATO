@@ -20,7 +20,7 @@
     	<div class="contentContainer">
         <div class="pageBreak"></div>
 	        <h1>
-	        	Team's 
+	        	Current Teams 
 	        </h1>
 	        <div class="headingBreak"></div>
         </div>
@@ -32,16 +32,13 @@
         	$tSport = mysqli_query($connection, "SELECT Team_Sport FROM team;");
         	
         	$i=0;
-        	while (($sportOutput = mysqli_fetch_row($tSport)) && ($nameOutput = mysqli_fetch_row($tName))) {
-        		echo"
-        		<h1>$nameOutput[$i]</h1>
-        		<h3>$sportOutput[$i]</h3>";
-        		
+        	while (($sportOutput = mysqli_fetch_row($tSport)) && ($nameOutput = mysqli_fetch_row($tName))) {	
         		$link = createURL($nameOutput[$i]);
-        		
         		echo"
-        		<a href=$link>Click here</a>
-        		<div class='headingBreak'></div>";
+        		<a href=$link><h1>$nameOutput[$i]</h1></a>
+        		<h3>$sportOutput[$i]</h3>
+        		<div class ='headingBreak'></div>"; 
+
         	$i+1;
 			}
         ?>

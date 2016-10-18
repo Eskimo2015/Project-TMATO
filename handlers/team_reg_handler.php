@@ -15,6 +15,8 @@ $conn_err_msg = "";
 $nameMatchExp = "/^[a-zA-Z '-]*$/";
 $nameRangeExp = "/^[a-zA-Z '-]{0,32}$/";
 
+echo "gsjoizgsreiokh;gsrhnijogsr";
+
 //DB Connection Check!  If conection problems exist, print error on page.
 if (mysqli_connect_errno()) {
 	$conn_err_msg = "Unable to connect to database!  " . mysqli_connect_error();
