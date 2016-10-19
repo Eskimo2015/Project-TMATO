@@ -34,7 +34,7 @@
                 			$output[4]
                 		<h1>Members</h1><div class='headingBreak'></div>
                 			<p>";
-	                	echo getmembers();
+	                	 getmembers();
                     		echo"</p>";
                     }
         ?>
@@ -84,13 +84,13 @@ function getMembers(){
 	 
 	while ($output = mysqli_fetch_row($members)) {
 		$uName = getUserByID($output[0]);
-		if (getTeamRole($uName)==1){
-			echo"<h3>*$uName</h3>";
+		if (getTeamRole($output[0])==1){
+			echo"<h3> * " . " $uName</h3>";
 			echo getTeamRole($uName);
 		}
 		else{
-			echo"<h3>$uName</h3>";
-			echo getTeamRole($uName);
+			echo"<h3>  " . " $uName</h3>";
+			echo getTeamRole("Hai12345");
 		}
 	}
 }
