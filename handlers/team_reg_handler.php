@@ -13,9 +13,7 @@ $regSuccess = "";
 $conn_err_msg = "";
 
 $nameMatchExp = "/^[a-zA-Z0-9-_ ]*$/";
-$nameRangeExp = "/^[a-zA-Z0-9'- ]{0,32}$/";
-
-echo "gsjoizgsreiokh;gsrhnijogsr";
+$nameRangeExp = "/^[a-zA-Z0-9' -]{0,32}$/";
 
 //DB Connection Check!  If conection problems exist, print error on page.
 if (mysqli_connect_errno()) {
@@ -107,28 +105,28 @@ function resetFields(){
 }
 	
 function insertTeamOwner($teamName){
+	$memID = "";
 	include "db_conn.php";
 
 	//Links owner to team.
 	$teamID = getTeamID($teamName);
-	if (mysqli_query($connection, "
-			TRANSACTION 
-			INSERT INTO membership (Mem_State, Mem_Private, Mem_Description) 
-			values('{0}','{0}','{owner of a team}')
-			
-			$memID = SCOPE_IDENTITY();
-			
-			INSERT INTO t_member_of (User_ID, Team_ID, Role_ID, Mem_ID) 
-			values('{$_SESSION["uID"]}','{$teamID}','{1}','{$memID}')
-			
-			COMMIT
-			")) {
+	if(!$connection){
+		die("Connection failed: " . mysqli_connect_error());
 	}
-	else {
-		$data = "There was an issue creating your Team!  " . mysqli_error($connection);
-	}	
+	
+	if (mysqli_query($connection, "
+			INSERT INTO membership (Mem_State, Mem_Private, Mem_Description) 
+			values('1','1','owner of a team');
+			")){			
+		$memID = mysqli_insert_id($connection);
+	}
+			
+	if (mysqli_query($connection, "
+			INSERT INTO t_member_of (User_ID, Team_ID, Role_ID, Mem_ID) 
+			values('{$_SESSION["uID"]}','{$teamID}','1','{$memID}');
+			")){ 
+	}
 }
-
 function getTeamID($teamName){
 	include "db_conn.php";
 	if (!$connection) {

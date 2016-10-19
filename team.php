@@ -33,9 +33,7 @@
                 		<h1>Bio</h1><div class='headingBreak'></div>
                 			$output[4]
                 		<h1>Members</h1><div class='headingBreak'></div>
-                			<p>
-	                			PlaceHolderIcon - N/A
-	                			";
+                			<p>";
 	                	echo getmembers();
                     		echo"</p>";
                     }
@@ -81,11 +79,19 @@ function getMembers(){
 	include "handlers/db_conn.php";
 	$teamID = getTeamID(); 
 	
+
 	$members = mysqli_query($connection, "SELECT User_ID FROM t_member_of WHERE Team_ID ='{$teamID}';");
 	 
 	while ($output = mysqli_fetch_row($members)) {
-		echo"
-		<h1>$Output[0]</h1>";
+		$uName = getUserByID($output[0]);
+		if (getTeamRole($uName)==1){
+			echo"<h3>*$uName</h3>";
+			echo getTeamRole($uName);
+		}
+		else{
+			echo"<h3>$uName</h3>";
+			echo getTeamRole($uName);
+		}
 	}
 }
 
@@ -94,6 +100,24 @@ function getTeamID(){
 	$action = getAction();
 	
 	$members = mysqli_query($connection, "SELECT Team_ID FROM team WHERE Team_Name ='{$action}';");
+	while($output = mysqli_fetch_row($members)){
+		return $output[0];
+	}
+}
+
+function getUserByID($userID){
+	include "handlers/db_conn.php";
+	$members = mysqli_query($connection, "SELECT User_UName FROM user WHERE User_ID ='{$userID}';");
+	
+	while($output = mysqli_fetch_row($members)){
+		return $output[0];
+	}
+}
+
+function getTeamRole($userID){
+	include "handlers/db_conn.php";
+	$members = mysqli_query($connection, "SELECT Role_ID FROM t_member_of WHERE User_ID ='{$userID}';");
+	
 	while($output = mysqli_fetch_row($members)){
 		return $output[0];
 	}
