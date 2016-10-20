@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<?php include 'session.php'; ?>
+<?php
+	include 'session.php'; 
+	include 'functions/team_functions.php';
+?>
 <html>
     <head>
         <title>Team</title>
@@ -13,7 +16,7 @@
         <div class="contentContainer">
         <div class="pageBreak"></div>
         <h1>
-            <?php echo getName() ?>
+            <?php echo getTeamName() ?>
         </h1>
         <div class="headingBreak"></div>
         
@@ -24,7 +27,7 @@
                 if (!$connection) {
                 	echo "<p class='conn_err_msg'>Unable to connect to database!  No data to display.<p>";
                     } else {
-                    $search = getAction();
+                    $search = getTeamAction();
 	                $result = mysqli_query($connection, "SELECT * FROM team where Team_Name LIKE '{$search}';");
                     }
 	                        
@@ -36,66 +39,13 @@
                 			<p>
 	                			PlaceHolderIcon - N/A
 	                			";
-	                	echo getmembers();
+	                	echo getTeamMembers();
                     		echo"</p>";
                     }
         ?>
         </div>
+        <p>
+        	Back To Teams <a href = team_navigation.php>Click here</a>
+        </p>
     </body>
 </html>
-
-<?php 
-function getAction(){
-	if (!empty($_GET['action'])) {
-		$action = $_GET['action'];
-		$action = basename($action);
-	}
-	else{
-		$action = "";
-	}
-	return $action;
-}
-
-function getName(){
-	$errMessage = "No team found";
-	include 'handlers/db_conn.php';
-	$action = getAction();
-	
-	if (!$connection) {
-		echo "<p class='conn_err_msg'>Unable to connect to database!  No data to display.<p>";
-	} else {
-		$result = mysqli_query($connection, "SELECT Team_Name FROM team where Team_Name LIKE '{$action}';");
-	}
-	
-	if($action == null){
-		return $errMessage;
-	}
-	else{
-		while ($data = mysqli_fetch_row($result)){
-			return $data[0];
-		}
-	}
-}
-
-function getMembers(){
-	include "handlers/db_conn.php";
-	$teamID = getTeamID(); 
-	
-	$members = mysqli_query($connection, "SELECT User_ID FROM t_member_of WHERE Team_ID ='{$teamID}';");
-	 
-	while ($output = mysqli_fetch_row($members)) {
-		echo"
-		<h1>$Output[0]</h1>";
-	}
-}
-
-function getTeamID(){
-	include "handlers/db_conn.php";
-	$action = getAction();
-	
-	$members = mysqli_query($connection, "SELECT Team_ID FROM team WHERE Team_Name ='{$action}';");
-	while($output = mysqli_fetch_row($members)){
-		return $output[0];
-	}
-}
-?>
