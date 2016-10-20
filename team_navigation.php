@@ -58,9 +58,11 @@
 	        	
 	        	mysqli_close($connection);
             }
+			
+			if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+				echo '<p>Want to create a new team? <a href = team_registration.php>Click here</a></p>';
+			}
         ?>
-        <p>
-        	Want to create a new team? <a href = team_registration.php>Click here</a>
-        </p>
+        
     </body>
 </html>

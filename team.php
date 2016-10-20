@@ -42,10 +42,10 @@
 	                	echo getTeamMembers();
                     		echo"</p>";
                     }
+                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                    	echo '<p>Back To Teams <a href = team_navigation.php>Click here</a></p>';
+                    }
         ?>
         </div>
-        <p>
-        	Back To Teams <a href = team_navigation.php>Click here</a>
-        </p>
     </body>
 </html>
