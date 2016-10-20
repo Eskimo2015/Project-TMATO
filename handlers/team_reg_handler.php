@@ -18,8 +18,6 @@ $teamNameRangeExp = "/^[a-zA-Z0-9-_ ]{0,32}$/";
 $teamSportMatchExp = "/^[a-zA-Z '-]*$/";
 $teamSportRangeExp = "/^[a-zA-Z '-]{0,32}$/";
 
-echo "gsjoizgsreiokh;gsrhnijogsr";
-
 //DB Connection Check!  If conection problems exist, print error on page.
 if (mysqli_connect_errno()) {
 	$conn_err_msg = "Unable to connect to database!  " . mysqli_connect_error();
@@ -110,10 +108,12 @@ function resetFields(){
 }
 	
 function insertTeamOwner($teamName){
+	$memID = "";
 	include "db_conn.php";
 
 	//Links owner to team.
 	$teamID = getTeamID($teamName);
+	
 	if (mysqli_query($connection, 
 			$memID = "INSERT INTO membership (Mem_State, Mem_Private, Mem_Description) 
 			values(0,0,'owner of a team')")) {
@@ -125,13 +125,10 @@ function insertTeamOwner($teamName){
 		} else {
 		    $data = 'Error: ' . ' ' . $memID . ' ' . mysqli_error($connection);
 		}
-	}
-	else {
-		$data = "There was an issue creating your Team!  " . mysqli_error($connection);
-	}
-	mysqli_close($connection);
-}
 
+	mysqli_close($connection);
+	}
+}
 function getTeamID($teamName){
 	include "db_conn.php";
 	if (!$connection) {
