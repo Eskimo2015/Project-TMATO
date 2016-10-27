@@ -53,7 +53,7 @@
 	        			<div class ='headingBreak'></div>";
 	        	} else {
 	        		do {
-		        		$link = createURL($output[3]);
+		        		$link = createTeamURL($output[3]);
 		        		echo"
 		        		<a href=$link><h1>$output[3]</h1></a>
 		        		<h3>$output[2]</h3><br/>
