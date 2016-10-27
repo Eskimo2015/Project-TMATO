@@ -42,18 +42,22 @@
                 $result;
                 
 	        	if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-					$result = mysqli_query($connection, "SELECT * FROM team WHERE Team_ID IN (SELECT Team_ID FROM t_member_of WHERE User_ID LIKE '{$_SESSION['uID']}');");
+					$result = mysqli_query($connection, "SELECT * FROM team WHERE Team_ID IN (SELECT Team_ID FROM t_member_of WHERE User_ID LIKE ".$_SESSION['uID'].");");
 	        	} else {
 	        		$result = mysqli_query($connection, "SELECT * FROM team;");
 	        	}
 	
-	        	while ($output = mysqli_fetch_row($result)) {
-	        	
-	        		$link = createURL($output[3]);
-	        		echo"
-	        		<a href=$link><h1>$output[3]</h1></a>
-	        		<h3>$output[2]</h3><br/>
-	        		<div class ='headingBreak'></div>";
+	        	$output = mysqli_fetch_row($result);
+	        	if (is_null($output)) {
+	        		echo"<h3>No teams found!</h3><br/>";
+	        	} else {
+	        		do {
+		        		$link = createURL($output[3]);
+		        		echo"
+		        		<a href=$link><h1>$output[3]</h1></a>
+		        		<h3>$output[2]</h3><br/>
+		        		<div class ='headingBreak'></div>";
+		        	} while ($output = mysqli_fetch_row($result));
 	        	}
 	        	
 	        	mysqli_close($connection);
