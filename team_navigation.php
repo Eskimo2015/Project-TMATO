@@ -49,7 +49,8 @@
 	
 	        	$output = mysqli_fetch_row($result);
 	        	if (is_null($output)) {
-	        		echo"<h3>No teams found!</h3><br/>";
+	        		echo"<h3>No teams found!</h3><br/>
+	        			<div class ='headingBreak'></div>";
 	        	} else {
 	        		do {
 		        		$link = createURL($output[3]);
