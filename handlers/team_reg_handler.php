@@ -92,7 +92,9 @@ function insertUserData($teamName, $teamSport) {
 	
 	//Step 2:  Insert user data to User table and print confirmation message
 	if (mysqli_query($connection, "INSERT INTO team (Team_Name, Team_Sport) values('{$teamName}','{$teamSport}')")) {
+		resetFields();
 		insertTeamOwner($teamName);
+		$data = "Your Team has been created successfully!";
 	} else {
 		$data = "There was an issue creating your Team!  " . mysqli_error($connection);
 	}
@@ -120,10 +122,8 @@ function insertTeamOwner($teamName){
 		    $last_id = mysqli_insert_id($connection);
 		    mysqli_query($connection, "INSERT INTO t_member_of (User_ID, Team_ID, Role_ID, Mem_ID) 
 			values('{$_SESSION['uID']}','{$teamID}',1,'{$last_id}')");
-		    $data = "Your Team has been created successfully!";
-			resetFields();
 		} else {
-		    $data = "There was an issue creating your Team!  " . mysqli_error($connection);
+		    $data = 'Error: ' . ' ' . $memID . ' ' . mysqli_error($connection);
 		}
 
 	mysqli_close($connection);
@@ -131,10 +131,13 @@ function insertTeamOwner($teamName){
 }
 function getTeamID($teamName){
 	include "db_conn.php";
-	$result = mysqli_query($connection, "SELECT Team_ID FROM team where Team_Name LIKE '{$teamName}';");
-	
-	while ($output = mysqli_fetch_row($result)){
-		return $output[0];
+	if (!$connection) {
+		echo "<p class='conn_err_msg'>Unable to connect to database!  No data to display.<p>";
+	} else {
+		$result = mysqli_query($connection, "SELECT Team_ID FROM team where Team_Name LIKE '{$teamName}';");
+	}
+	while ($data = mysqli_fetch_row($result)){
+		return $data[0];
 	}
 	mysqli_close($connection);
 }

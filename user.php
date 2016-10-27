@@ -5,10 +5,7 @@ Web site theme design by Dion Rabone
 
 Dislays user account details.
 -->
-<?php 
-	include 'session.php';
-	include 'functions/user_functions.php';
-?>
+<?php include 'session.php'; ?>
 <html>
     <head>
     	<title>
@@ -33,12 +30,7 @@ Dislays user account details.
         <h1>
         	<!--sets the user page title-->
             <?php
-				include 'handlers/db_conn.php';
-				if (!$connection) {
-					echo 'Connection Error!';
-				} else {
-					echo getName();
-				}
+            	echo getName();
             ?>  
         </h1>
         <div class="headingBreak"></div>
@@ -98,3 +90,39 @@ Dislays user account details.
         </div>
     </body>
 </html>
+
+<?php 
+function getAction(){
+	if (!empty($_GET['action'])) {
+		$action = $_GET['action'];
+		$action = basename($action);
+	}
+	else if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+				$action = $_SESSION["user"];
+	}
+	else{
+		$action = "";
+	}
+	return $action;
+}
+
+function getName(){
+	$errMessage = "No user found";
+	include 'handlers/db_conn.php';
+	$action = getAction();
+	
+	if (!$connection) {
+		echo "<p class='conn_err_msg'>Unable to connect to database!  No data to display.<p>";
+	} else {
+		$result = mysqli_query($connection, "SELECT User_UName FROM user WHERE User_UName LIKE '{$action}';");
+	}
+	if($action == null){
+		return $errMessage;
+	}
+	else{
+		while ($data = mysqli_fetch_row($result)){
+			return $data[0];
+		}
+	}
+}
+?>

@@ -18,7 +18,7 @@ include 'handlers/settings_handler.php';
     </head>
     <body>
 	<?php include "banner.php";
-		echo "<h1>" . getName()  . "'s Settings" . "</h1>";
+		echo "<h1>" . getName()  . "'s settings" . "</h1>";
 	?>
 
 	<!--ContentBody-->
