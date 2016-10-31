@@ -21,7 +21,7 @@ include 'functions/create_url_function.php';
     <body>
     <?php include 'banner.php'; ?>
     	<div class="contentContainer">
-        <div class="pageBreak"></div>
+        	<div class="pageBreak"></div>
 	        <h1>
 	        <?php
 				if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
@@ -42,7 +42,7 @@ include 'functions/create_url_function.php';
                 $result;
                 
 	        	if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-					$result = mysqli_query($connection, "SELECT tournament.* FROM tournament, enroll_in, team, t_member_of WHERE t_member_of.Team_ID=".$_SESSION['uID']." AND team.Team_ID=t_member_of.Team_ID AND enroll_in.Team_ID=team.Team_ID AND tournament.Tour_ID=enroll_in.Tour_ID;");
+					$result = mysqli_query($connection, "SELECT tournament.* FROM tournament, enroll_in, team, t_member_of WHERE t_member_of.User_ID=".$_SESSION['uID']." AND team.Team_ID=t_member_of.Team_ID AND enroll_in.Team_ID=team.Team_ID AND tournament.Tour_ID=enroll_in.Tour_ID;");
 	        	} else {
 	        		$result = mysqli_query($connection, "SELECT * FROM tournament;");
 	        	}
@@ -59,6 +59,25 @@ include 'functions/create_url_function.php';
 	        			<h3>$output[2]</h3><br/>
 	        			<div class ='headingBreak'></div>";
 	        		} while ($output = mysqli_fetch_row($result));
+	        	}
+	        	
+	        	if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+	        		echo"<h1>Other Tournaments</h1>";
+	        		$result = mysqli_query($connection, "SELECT tournament.* FROM tournament, enroll_in, team, t_member_of WHERE t_member_of.User_ID!=".$_SESSION['uID']." AND team.Team_ID=t_member_of.Team_ID AND enroll_in.Team_ID=team.Team_ID AND tournament.Tour_ID=enroll_in.Tour_ID;");
+	        		$output = mysqli_fetch_row($result);
+	        		
+	        		if (is_null($output)) {
+	        			echo"<h3>No other tournaments found!</h3><br/>
+	        			<div class ='headingBreak'></div>";
+	        		} else {
+	        			do {
+	        				$link = createURL($output[3]);
+	        				echo"
+	        				<h1><a href=$link>$output[3]</a></h1>
+	        				<h3>$output[2]</h3><br/>
+	        				<div class ='headingBreak'></div>";
+	        			} while ($output = mysqli_fetch_row($result));
+	        		}
 	        	}
 	        	
 	        	mysqli_close($connection);
