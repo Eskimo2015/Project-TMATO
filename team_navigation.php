@@ -55,7 +55,7 @@
 	        		do {
 		        		$link = createTeamURL($output[3]);
 		        		echo"
-		        		<a href=$link><h1>$output[3]</h1></a>
+		        		<h1><a href=$link>$output[3]</a></h1>
 		        		<h3>$output[2]</h3><br/>
 		        		<div class ='headingBreak'></div>";
 		        	} while ($output = mysqli_fetch_row($result));
