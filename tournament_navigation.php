@@ -55,7 +55,7 @@ include 'functions/create_url_function.php';
 	        		do {
 	        			$link = createURL($output[3]);
 	        			echo"
-	        			<a href=$link><h1>$output[3]</h1></a>
+	        			<h1><a href=$link>$output[3]</a></h1>
 	        			<h3>$output[2]</h3><br/>
 	        			<div class ='headingBreak'></div>";
 	        		} while ($output = mysqli_fetch_row($result));
@@ -65,7 +65,7 @@ include 'functions/create_url_function.php';
             }
 			
 			if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-				echo '<p>Want to create a new team? <a href = team_registration.php>Click here</a></p>';
+				echo '<p>Want to create a new tournament? <a href = tournament_registration.php>Click here</a></p>';
 			}
         ?>
         
