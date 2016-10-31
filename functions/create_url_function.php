@@ -10,9 +10,8 @@ function createTeamURL($team_name) {
 	$link = "team.php?action=" . $team_name;
 	return $link;
 }
-function createTournamentURL($tournament_name) {
-	$tournament_name = replaceWhiteSpace ( $tournament_name );
-	$link = "tournament.php?action=" . $tournament_name;
+function createTournamentURL($Tournament_ID) {
+	$link = "tournament.php?id=" . $Tournament_ID;
 	return $link;
 }
 function replaceWhiteSpace($string) {
