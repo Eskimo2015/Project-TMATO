@@ -45,7 +45,7 @@
                     <tr class="banner">
                         <td><a href ="user.php">User</a></td>
                         <td><a href ="team_navigation.php">Team</a></td>
-                        <td><a href ="tournament.php">Tournament</a></td>
+                        <td><a href ="tournament_navigation.php">Tournament</a></td>
                         <td><a href ="organisation.php">Organisation</a></td>
                         <!---<td class="hideElement"></td>-->
                     </tr>

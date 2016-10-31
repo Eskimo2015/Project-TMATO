@@ -47,13 +47,18 @@ include 'functions/create_url_function.php';
 	        		$result = mysqli_query($connection, "SELECT * FROM tournament;");
 	        	}
 	
-	        	while ($output = mysqli_fetch_row($result)) {
-	        	
-	        		$link = createURL($output[3]);
-	        		echo"
-	        		<a href=$link><h1>$output[3]</h1></a>
-	        		<h3>$output[2]</h3><br/>
-	        		<div class ='headingBreak'></div>";
+	        	$output = mysqli_fetch_row($result);
+	        	if (is_null($output)) {
+	        		echo"<h3>No tournaments found!</h3><br/>
+	        			<div class ='headingBreak'></div>";
+	        	} else {
+	        		do {
+	        			$link = createURL($output[3]);
+	        			echo"
+	        			<a href=$link><h1>$output[3]</h1></a>
+	        			<h3>$output[2]</h3><br/>
+	        			<div class ='headingBreak'></div>";
+	        		} while ($output = mysqli_fetch_row($result));
 	        	}
 	        	
 	        	mysqli_close($connection);
