@@ -71,7 +71,7 @@ include 'handlers/registration_handler.php';
                     <?php
                     include 'handlers/db_conn.php';
                     if (!$connection) {
-						echo "<p class='conn_err_msg'>No data to display!</p>";
+						echo "<p class='conn_err_msg'>Unable to connect to the database!</p>";
                     } else {
 			            echo '<div class="div_user">
 			                <table class="tbl_user">
