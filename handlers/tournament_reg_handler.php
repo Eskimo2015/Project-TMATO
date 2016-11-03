@@ -6,17 +6,14 @@
 include 'handlers/db_conn.php';
 
 //Step 1:  Define variables and set to empty values
-$teamName = $teamSport = "";
-$teamNameErr = $teamSportErr = "";
+$tourName = $tourStartDate = $tourEndDate = $tourTime = $tourLocation = "";
+$tourNameErr = $tourStartDateErr = $tourEndDateErr = $tourTimeErr = $tourLocationErr = "";
 
 $regSuccess = "";
 $conn_err_msg = "";
 
-$teamNameMatchExp = "/^[a-zA-Z0-9-_ ]*$/";
-$teamNameRangeExp = "/^[a-zA-Z0-9-_ ]{0,32}$/";
-
-$teamSportMatchExp = "/^[a-zA-Z '-]*$/";
-$teamSportRangeExp = "/^[a-zA-Z '-]{0,32}$/";
+$tourNameMatchExp = "/^[a-zA-Z0-9-_ ]*$/";
+$tourNameRangeExp = "/^[a-zA-Z0-9-_ ]{0,32}$/";
 
 //DB Connection Check!  If conection problems exist, print error on page.
 if (mysqli_connect_errno()) {
@@ -25,18 +22,16 @@ if (mysqli_connect_errno()) {
 } else {
 	//Step 2:  If submission via POST method then validate...
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		if (empty($_POST["team_name"])) {
-			$teamNameErr = "Team Name is required!";
+		if (empty($_POST["tourName"])) {
+			$tourNameErr = "Tournament Name is required!";
 		} else {
-			$teamName = clean_input($_POST['team_name']);
-			// check if Team Name only contains letters and whitespace
-			if (!preg_match($teamNameMatchExp,$teamName)) {
-				$teamNameErr = "Only upper and lower case letters (A-Z a-z), digits (0-9), hyphens (-), underscores (_) and Whitespace are permitted!";
-				// check if Team Name exceeds 32 characters
-			} else if(!preg_match($teamNameRangeExp,$teamName)) {
-				$teamNameErr = "Team Name must NOT exceed 32 characters!";
-			} else {
-				$teamNameErr = teamNameCheck($teamName);
+			$tourName = clean_input($_POST['tourName']);
+			// check if Tournament Name only contains letters and whitespace
+			if (!preg_match($tourNameMatchExp, $tourName)) {
+				$tourNameErr = "Only upper and lower case letters (A-Z a-z), digits (0-9), hyphens (-), underscores (_) and Whitespace are permitted!";
+				// check if Tournament Name exceeds 32 characters
+			} else if(!preg_match($tourNameRangeExp, $tourName)) {
+				$tourNameErr = "Team Name must NOT exceed 32 characters!";
 			}
 		}
 		if (empty($_POST["team_sport"])) {
