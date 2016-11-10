@@ -27,19 +27,10 @@
         </h1>
         <div class="headingBreak"></div>
         <p>
-        	<a href="user.php?action=hai">hai</a>
-            Hello Lorem ipsum dolor sit amet, cum ei quas dicit definitionem, agam inani facilisi no eam, nihil dicunt fuisset est in. Mel solet expetenda et, nonumes maluisset reformidans ut duo. Te amet error graecis sea, semper tacimates in ius. His semper facilisis evertitur no, vis fuisset assueverit efficiantur cu.
-            Pri legendos adolescens dissentiet ex. Ne eos veniam feugiat deterruisset, eam in fierent evertitur. No est blandit iudicabit, ne vis solet delenit. Eam cu molestiae quaerendum, postea qualisque posidonium duo ei. Ut vel quodsi docendi corrumpit, percipit salutandi ad cum, causae voluptaria eam eu. Te cum facilisi partiendo consetetur.
-            Paulo affert indoctum vis no, vel ut paulo docendi. Vel ea docendi recteque, qui singulis recteque abhorreant te, bonorum docendi pri eu. In pro nonumy epicuri molestie. Persequeris vituperatoribus usu ex, no cum vivendo epicurei, vim in nobis vivendum. In cum appetere erroribus ocurreret, errem feugait his an. In vidit movet platonem nam, eos tollit iracundia id. Vide qualisque concludaturque usu id, te usu rebum scripserit signiferumque, vim et legimus debitis efficiantur.
-            Mei quas laoreet an, in probo iudico ubique eum. Ad nisl regione molestie est, noster copiosae temporibus ex vel. Ea recteque maluisset cotidieque usu, iusto adolescens id mei. Ei mei tota reprimique.
-            Sed dicit deserunt corrumpit et, sit eu saperet similique pertinacia. Te qui molestie constituam, consul laoreet iracundia ius cu, dicant causae interesset te mea. Sea dolores vituperatoribus ea. Ea brute voluptua pri.
+        	The T.M.A.T.O team started this project with the goal of bringing a simple and easy to use system for people to organize their sporting events. Over the past four months the team has worked to bring this vision from the drawing board into the real world.
         </p>
         <p>
-            Lorem ipsum dolor sit amet, cum ei quas dicit definitionem, agam inani facilisi no eam, nihil dicunt fuisset est in. Mel solet expetenda et, nonumes maluisset reformidans ut duo. Te amet error graecis sea, semper tacimates in ius. His semper facilisis evertitur no, vis fuisset assueverit efficiantur cu.
-            Pri legendos adolescens dissentiet ex. Ne eos veniam feugiat deterruisset, eam in fierent evertitur. No est blandit iudicabit, ne vis solet delenit. Eam cu molestiae quaerendum, postea qualisque posidonium duo ei. Ut vel quodsi docendi corrumpit, percipit salutandi ad cum, causae voluptaria eam eu. Te cum facilisi partiendo consetetur.
-            Paulo affert indoctum vis no, vel ut paulo docendi. Vel ea docendi recteque, qui singulis recteque abhorreant te, bonorum docendi pri eu. In pro nonumy epicuri molestie. Persequeris vituperatoribus usu ex, no cum vivendo epicurei, vim in nobis vivendum. In cum appetere erroribus ocurreret, errem feugait his an. In vidit movet platonem nam, eos tollit iracundia id. Vide qualisque concludaturque usu id, te usu rebum scripserit signiferumque, vim et legimus debitis efficiantur.
-            Mei quas laoreet an, in probo iudico ubique eum. Ad nisl regione molestie est, noster copiosae temporibus ex vel. Ea recteque maluisset cotidieque usu, iusto adolescens id mei. Ei mei tota reprimique.
-            Sed dicit deserunt corrumpit et, sit eu saperet similique pertinacia. Te qui molestie constituam, consul laoreet iracundia ius cu, dicant causae interesset te mea. Sea dolores vituperatoribus ea. Ea brute voluptua pri.
+             The team consists of: Ben Hook, Chris Kilby, Dion Rabone and Noah Nathan. Together they have strived to see this alpha version of the T.M.A.T.O website up and running, and delivering the first rays of what will be a bright future for project T.M.A.T.O.
         </p>
         <br/>
         <br/>
